@@ -1,0 +1,27 @@
+salmon_meat:
+  food_id: 1
+  label_id: 1
+
+salmon_protein:
+  food_id: 1
+  label_id: 2
+
+spinach_vegetable:
+  food_id: 2
+  label_id: 3
+
+sundried_tomato_fruit:
+  food_id: 3
+  label_id: 4
+
+pine_nuts_nuts:
+  food_id: 4
+  label_id: 5
+
+pesto_sauce:
+  food_id: 5
+  label_id: 6
+
+plum_fruit:
+  food_id: 6
+  label_id: 4

@@ -1,0 +1,31 @@
+<%= form_for(@food) do |f| %>
+  <% if @food.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
+
+      <ul>
+      <% @food.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <% for label in Label.find(:all) %>
+    <div>
+      <%= check_box_tag "food[label_ids][]", label.id, @food.labels.include?(label) %>
+      <%= label.name %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

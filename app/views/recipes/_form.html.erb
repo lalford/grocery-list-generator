@@ -1,0 +1,52 @@
+<%= form_for(@recipe) do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <h2>Ingredients</h2>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Include</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+    <%= f.fields_for :ingredients, @recipe.build_ingredient_list do |builder| %>
+      <% food = builder.object.food %>
+      <%= builder.hidden_field :food_id %>
+      <tr>
+        <td>
+          <%= builder.label food.name %>
+        </td>
+        <td align="center">
+          <%= builder.check_box :selected %>
+        </td>
+        <td>
+          <%= builder.text_field :quantity %>
+        </td>
+        <td>
+          <!--%= builder.collection_select :widget, :unit, @subcategories, :id, :name %-->
+          <%= builder.text_field :unit %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <br/>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+salmon:
+  id: 1
+  name: Salmon
+  description: a fish
+
+spinach:
+  id: 2
+  name: Spinach
+  description: greens
+
+sundried_tomato:
+  id: 3
+  name: Sundried Tomato
+  description:
+
+pine_nuts:
+  id: 4
+  name: Pine Nuts
+  description: nuts
+
+pesto:
+  id: 5
+  name: Pesto
+  description: sauce
+
+plum:
+  id: 6
+  name: Plum
+  description: pitted fruit

@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+salmon_ss:
+  id: 1
+  food_id: 1
+  recipe_id: 1
+  quantity: 2
+  unit_id: 2
+
+spinach_ss:
+  id: 2
+  food_id: 2
+  recipe_id: 1
+  quantity: 0.5
+  unit_id: 3
+
+sundried_tomato_ss:
+  id: 3
+  food_id: 3
+  recipe_id: 1
+  quantity: 0.5
+  unit_id: 4
+
+pine_nuts_ss:
+  id: 4
+  food_id: 4
+  recipe_id: 1
+  quantity: 0.5
+  unit_id: 3
+
+pesto:
+  id: 5
+  food_id: 5
+  recipe_id: 1
+  quantity: 8
+  unit_id: 4

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+oz:
+  id: 1
+  short_name: oz
+  long_name: ounces
+
+filet:
+  id: 2
+  short_name: filet
+  long_name:
+
+bag:
+  id: 3
+  short_name: bag
+  long_name:
+
+tbsp:
+  id: 4
+  short_name: tbsp
+  long_name: tablespoon
