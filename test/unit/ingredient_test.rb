@@ -5,16 +5,17 @@ class IngredientTest < ActiveSupport::TestCase
     ingredient = Ingredient.new { |i|
       i.food = foods(:plum)
       i.recipe = recipes(:stuffed_salmon)
-      i.quantity = 5
     }
     assert ingredient.save, "should have assigned plums to the stuffed salmon recipe, even if it is a bad idea"
+    assert ingredient.update_attributes({:quantity => 2.1, :unit => units(:bag)}), "should have added a quantity and unit to the new ingredient"
   end
 
-  test "should fail to save without a quantity" do
+  test "should fail to save with a non-numeric quantity" do
     ingredient = Ingredient.new { |i|
       i.food = foods(:plum)
       i.recipe = recipes(:stuffed_salmon)
+      i.quantity = "five"
     }
-    assert !ingredient.save, "should not have saved an ingredient with no quantity"
+    assert !ingredient.save, "should not have saved an ingredient with non-numeric quantity"
   end
 end

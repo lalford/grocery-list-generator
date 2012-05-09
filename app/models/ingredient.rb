@@ -3,7 +3,7 @@ class Ingredient < ActiveRecord::Base
   belongs_to :recipe
   belongs_to :unit
 
-  validates :quantity, :presence => true
+  validates_numericality_of :quantity, :allow_nil => true
 
   attr_accessor :selected
 end

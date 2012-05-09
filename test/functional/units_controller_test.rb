@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UnitsControllerTest < ActionController::TestCase
   setup do
-    @unit = units(:one)
+    @unit = units(:oz)
   end
 
   test "should get index" do
@@ -18,7 +18,8 @@ class UnitsControllerTest < ActionController::TestCase
 
   test "should create unit" do
     assert_difference('Unit.count') do
-      post :create, unit: @unit.attributes
+      unit = Unit.new short_name: "abc", long_name: "abc123"
+      post :create, unit: unit.attributes
     end
 
     assert_redirected_to unit_path(assigns(:unit))

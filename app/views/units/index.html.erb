@@ -2,6 +2,8 @@
 
 <table>
   <tr>
+    <th>Short Name</th>
+    <th>Long Name</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +11,8 @@
 
 <% @units.each do |unit| %>
   <tr>
+    <td><%= unit.short_name %></td>
+    <td><%= unit.long_name %></td>
     <td><%= link_to 'Show', unit %></td>
     <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
     <td><%= link_to 'Destroy', unit, confirm: 'Are you sure?', method: :delete %></td>
@@ -19,3 +23,7 @@
 <br />
 
 <%= link_to 'New Unit', new_unit_path %>
+
+<br />
+
+<%= link_to 'Main Page', '/' %>

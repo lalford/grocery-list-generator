@@ -2,9 +2,10 @@ class RecipesController < ApplicationController
   before_filter :process_ingredients_attrs, only: [:create, :update]
 
   def process_ingredients_attrs
-    if params[:recipe][:ingredients] != nil
+    if params[:recipe][:ingredients_attributes] != nil
       params[:recipe][:ingredients_attributes].values.each do |ing_attr|
-        ing_attr[:_destroy] = true if ing_attr[:selected] != true
+        ing_attr[:_destroy] = true if ing_attr[:selected] != "1"
+        Rails.logger.debug "ingredient attributes = #{ing_attr}"
       end
     end
   end

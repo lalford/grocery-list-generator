@@ -16,6 +16,22 @@
     <%= f.text_field :name %>
   </div>
 
+  <h2>Selected Ingredients</h2>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+    <% for ingredient in @recipe.ingredients %>
+      <tr>
+        <td><%= ingredient.food.name %></td>
+        <td><%= ingredient.quantity %></td>
+        <td><%= ingredient.unit.short_name if ingredient.unit %></td>
+      </tr>
+    <% end %>
+  </table>
+
   <h2>Ingredients</h2>
   <table border="1">
     <tr>
@@ -24,10 +40,11 @@
       <th>Quantity</th>
       <th>Unit</th>
     </tr>
-    <%= f.fields_for :ingredients, @recipe.build_ingredient_list do |builder| %>
+    <%= f.fields_for :ingredients, @recipe.build_available_ingredient_list do |builder| %>
       <% ingredient = builder.object %>
       <% food = ingredient.food %>
       <%= builder.hidden_field :food_id %>
+      <%= builder.hidden_field :unit_id %>
       <tr>
         <td>
           <%= builder.label food.name %>
@@ -39,7 +56,7 @@
           <%= builder.text_field :quantity %>
         </td>
         <td>
-          <%= builder.collection_select :ingredient, :unit_id, Unit.all, :id, :short_name, :include_blank => true %>
+            <%= builder.collection_select :unit_id, Unit.all, :id, :short_name, :include_blank => true %>
         </td>
       </tr>
     <% end %>

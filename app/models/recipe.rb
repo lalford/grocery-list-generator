@@ -8,11 +8,11 @@ class Recipe < ActiveRecord::Base
   validates_uniqueness_of :name
 
   # builds a list of all foods as selected/unselected ingredients
-  def build_ingredient_list
+  def build_available_ingredient_list
     [].tap do |ingredient_list|
       Food.all.each do |food|
         if ingredient = ingredients.find { |ing| ing.food_id == food.id }
-          ingredient_list << ingredient.tap { |ing| ing.selected ||= true }
+          #ingredient_list << ingredient.tap { |ing| ing.selected ||= true }
         else
           ingredient_list << Ingredient.new(food: food)
         end
