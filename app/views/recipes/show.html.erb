@@ -17,7 +17,7 @@
       <tr>
         <td><%= ingredient.food.name %></td>
         <td><%= ingredient.quantity %></td>
-        <td><%= ingredient.unit %></td>
+        <td><%= ingredient.unit.short_name if ingredient.unit %></td>
       </tr>
     <% end %>
   </table>

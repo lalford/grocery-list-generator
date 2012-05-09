@@ -25,7 +25,8 @@
       <th>Unit</th>
     </tr>
     <%= f.fields_for :ingredients, @recipe.build_ingredient_list do |builder| %>
-      <% food = builder.object.food %>
+      <% ingredient = builder.object %>
+      <% food = ingredient.food %>
       <%= builder.hidden_field :food_id %>
       <tr>
         <td>
@@ -38,8 +39,7 @@
           <%= builder.text_field :quantity %>
         </td>
         <td>
-          <!--%= builder.collection_select :widget, :unit, @subcategories, :id, :name %-->
-          <%= builder.text_field :unit %>
+          <%= builder.collection_select :ingredient, :unit_id, Unit.all, :id, :short_name, :include_blank => true %>
         </td>
       </tr>
     <% end %>
