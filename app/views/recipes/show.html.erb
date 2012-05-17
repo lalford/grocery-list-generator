@@ -13,7 +13,7 @@
       <th>Quantity</th>
       <th>Unit</th>
     </tr>
-    <% for ingredient in @recipe.ingredients %>
+    <% for ingredient in @recipe.ingredients.sort! { |i1,i2| i1.food.name <=> i2.food.name } %>
       <tr>
         <td><%= ingredient.food.name %></td>
         <td><%= ingredient.quantity %></td>

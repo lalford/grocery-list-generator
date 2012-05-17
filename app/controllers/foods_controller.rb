@@ -1,8 +1,9 @@
 class FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json
+  #   ?substring=<substring of food name>
   def index
-    @foods = Food.all
+    @foods = Food.search(params[:substring])
 
     respond_to do |format|
       format.html # index.html.erb

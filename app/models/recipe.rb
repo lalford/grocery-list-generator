@@ -9,7 +9,7 @@ class Recipe < ActiveRecord::Base
 
   # builds a list of all foods as selected/unselected ingredients
   def build_available_ingredient_list
-    [].tap do |ingredient_list|
+    list = [].tap do |ingredient_list|
       Food.all.each do |food|
         if ingredient = ingredients.find { |ing| ing.food_id == food.id }
           #ingredient_list << ingredient.tap { |ing| ing.selected ||= true }
@@ -18,6 +18,7 @@ class Recipe < ActiveRecord::Base
         end
       end
     end
+    list.sort! { |i1,i2| i1.food.name <=> i2.food.name }
   end
 
 end

@@ -23,7 +23,7 @@
       <th>Quantity</th>
       <th>Unit</th>
     </tr>
-    <% for ingredient in @recipe.ingredients %>
+    <% for ingredient in @recipe.ingredients.sort! { |i1,i2| i1.food.name <=> i2.food.name } %>
       <tr>
         <td><%= ingredient.food.name %></td>
         <td><%= ingredient.quantity %></td>
@@ -61,6 +61,16 @@
       </tr>
     <% end %>
   </table>
+
+  <h2>Search Ingredients</h2>
+    // TODO - what is needed here is the ajax call to occur on change of the text_field_tag, load the food data somewhere
+    // usable on select, then a button to add an ingredient to this recipe with the selected food and additional fields
+  <% form_tag foods_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:substring] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
   <br/>
 
   <div class="actions">

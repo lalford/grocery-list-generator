@@ -30,4 +30,22 @@ class FoodTest < ActiveSupport::TestCase
     assert_equal recipes.size, 1, "expected 1 recipe for stuffed salmon"
     assert recipes[0].name.casecmp("stuffed salmon"), "expected stuffed salmon recipe"
   end
+
+  test "should find salmon" do
+    results = Food.search "salmon"
+    assert_not_nil results
+    assert_equal 1, results.length, "expected only 1 result"
+    assert_equal foods(:salmon).name, results[0].name, "expected to find salmon"
+  end
+
+  test "should find nothing" do
+    nothing = Food.search "asdflkjqlwkerjlkj asdf"
+    assert_equal [], nothing, "expected an empty set"
+  end
+
+  test "should find spinach and pine nuts" do
+    results = Food.search "pi"
+    assert_not_nil results
+    assert_equal 2, results.length, "expected 2 items containing the string 'pi'"
+  end
 end
