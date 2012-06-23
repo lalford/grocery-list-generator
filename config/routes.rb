@@ -1,9 +1,13 @@
 GroceryListGenerator::Application.routes.draw do
-  resources :recipes
+  resources :recipes do
+    post 'ingredients'
+  end
 
   resources :labels
 
-  resources :foods
+  resources :foods do
+    get :autocomplete_food_name, :on => :collection
+  end
 
   resources :units
 

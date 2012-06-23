@@ -12,7 +12,7 @@ class FoodsControllerTest < ActionController::TestCase
   end
 
   test "should find sundried tomato" do
-    get :index, {:format => :json, 'substring' => 'dried tom'}
+    get :index, {:format => :json, 'query' => 'sundried t'}
     assert_response :success
     assert_not_nil assigns(:foods)
 
@@ -24,17 +24,19 @@ class FoodsControllerTest < ActionController::TestCase
   end
 
   test "should find sundried tomato and pesto" do
-    get :index, {:format => :json, 'substring' => 'to'}
+    get :index, {:format => :json, 'query' => 'p'}
     assert_response :success
     assert_not_nil assigns(:foods)
 
     found_foods = JSON.parse response.body
     assert_not_nil found_foods
-    assert_equal 2, found_foods.length
+    assert_equal 3, found_foods.length
     assert_equal foods(:pesto).id, found_foods[0]['id']
     assert_equal foods(:pesto).name, found_foods[0]['name']
-    assert_equal foods(:sundried_tomato).id, found_foods[1]['id']
-    assert_equal foods(:sundried_tomato).name, found_foods[1]['name']
+    assert_equal foods(:pine_nuts).id, found_foods[1]['id']
+    assert_equal foods(:pine_nuts).name, found_foods[1]['name']
+    assert_equal foods(:plum).id, found_foods[2]['id']
+    assert_equal foods(:plum).name, found_foods[2]['name']
   end
 
   test "should get new" do

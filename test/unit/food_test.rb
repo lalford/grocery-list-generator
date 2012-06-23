@@ -43,9 +43,12 @@ class FoodTest < ActiveSupport::TestCase
     assert_equal [], nothing, "expected an empty set"
   end
 
-  test "should find spinach and pine nuts" do
-    results = Food.search "pi"
+  test "should find and alphabetize all foods starting in s" do
+    results = Food.search "s"
     assert_not_nil results
-    assert_equal 2, results.length, "expected 2 items containing the string 'pi'"
+    assert_equal 3, results.length, "expected 3 items starting in 's'"
+    assert_equal foods(:salmon).name, results[0].name, "expected to find salmon"
+    assert_equal foods(:spinach).name, results[1].name, "expected to find spinach"
+    assert_equal foods(:sundried_tomato).name, results[2].name, "expected to find sundried tomato"
   end
 end

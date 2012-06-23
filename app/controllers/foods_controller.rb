@@ -1,4 +1,6 @@
 class FoodsController < ApplicationController
+  autocomplete :food, :name
+
   # GET /foods
   # GET /foods.json
   #   ?substring=<substring of food name>
