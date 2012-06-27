@@ -1,0 +1,58 @@
+Connecting to database specified by database.yml
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2012-06-04 11:03:17 -0700
+Processing by ProjectsController#new as HTML
+Completed 500 Internal Server Error in 1ms
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (1.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to InitialTables (20110710143903)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "tasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "project_id" integer, "name" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "milestones" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "task_id" integer, "name" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110710143903')
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("milestones")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("projects")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("tasks")
+Connecting to database specified by database.yml
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2012-06-04 11:08:28 -0700
+Processing by ProjectsController#new as HTML
+  Rendered projects/new.html.erb within layouts/application (199.1ms)
+Completed 200 OK in 908ms (Views: 904.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/jquery.js" for 127.0.0.1 at 2012-06-04 11:08:29 -0700
+Compiled jquery.js  (21ms)  (pid 52505)
+Served asset /jquery.js - 200 OK (417ms)
+
+
+Started GET "/assets/jquery_nested_form.js" for 127.0.0.1 at 2012-06-04 11:08:30 -0700
+Compiled jquery_nested_form.js  (0ms)  (pid 52505)
+Served asset /jquery_nested_form.js - 200 OK (25ms)
+
+
+Started GET "/projects/new?type=prototype" for 127.0.0.1 at 2012-06-04 11:08:30 -0700
+Processing by ProjectsController#new as HTML
+  Parameters: {"type"=>"prototype"}
+  Rendered projects/new.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/prototype.js" for 127.0.0.1 at 2012-06-04 11:08:31 -0700
+Compiled prototype.js  (1ms)  (pid 52505)
+Served asset /prototype.js - 200 OK (413ms)
+
+
+Started GET "/assets/prototype_nested_form.js" for 127.0.0.1 at 2012-06-04 11:08:31 -0700
+Compiled prototype_nested_form.js  (0ms)  (pid 52505)
+Served asset /prototype_nested_form.js - 200 OK (72ms)

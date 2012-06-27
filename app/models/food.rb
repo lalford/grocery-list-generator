@@ -6,6 +6,10 @@ class Food < ActiveRecord::Base
   validates :name, :presence => true
   validates_uniqueness_of :name
 
+  def autocomplete_display
+    "#{self.name}"
+  end
+
   def self.search(query)
     if query
       find(:all, :conditions => ['name LIKE ?', "#{query}%"], :order => 'name')

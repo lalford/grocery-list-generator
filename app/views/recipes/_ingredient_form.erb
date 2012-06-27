@@ -1,15 +1,17 @@
-<%= form_for @potential_ingredient, :url => 'recipes#ingredients' do |f| %>
+<%= form_for @potential_ingredient, :url => {:action => 'ingredients'}, :method => :post do |f| %>
   <table>
     <tr>
       <th>Name</th>
       <th>Quantity</th>
       <th>Unit</th>
+      <th/>
     </tr>
     <tr>
-      <td><%= f.autocomplete_field :food, autocomplete_food_name_foods_path %></td>
+      <td><%= f.autocomplete_field :food, autocomplete_food_name_foods_path, :id_element => '#id_element' %></td>
       <td><%= f.text_field :quantity %></td>
       <td><%= f.collection_select :unit_id, Unit.all, :id, :short_name, :include_blank => true %></td>
+      <td><%= f.submit %></td>
     </tr>
   </table>
-  <%= f.submit %>
+  <br/>
 <% end %>

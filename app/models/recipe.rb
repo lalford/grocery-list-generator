@@ -7,8 +7,8 @@ class Recipe < ActiveRecord::Base
   validates :name, :presence => true
   validates_uniqueness_of :name
 
-  attr_accessible :potential_ingredient
-  attr_accessor :potential_ingredient
+  attr_accessible :name
+  attr_accessible :ingredients_attributes
 
   # builds a list of all foods as selected/unselected ingredients
   def build_available_ingredient_list
