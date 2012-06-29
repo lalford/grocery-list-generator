@@ -25,4 +25,4 @@ README.rdoc
 *.iws
 
 # Ignore the directory bundler seems to insist on
-./journey-1.0.3/
+journey-1.0.3
