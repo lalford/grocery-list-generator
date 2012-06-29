@@ -7,5 +7,10 @@ gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'nested_form'
 
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+end
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
