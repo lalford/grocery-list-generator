@@ -19,5 +19,10 @@ Gemfile.lock
 README.rdoc
 ./log
 
+# Ignore intellij files
+*.iml
+*.ipr
+*.iws
+
 # Ignore the directory bundler seems to insist on
-./journey-1.0.3
+./journey-1.0.3/
