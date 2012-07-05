@@ -51,4 +51,9 @@ class FoodTest < ActiveSupport::TestCase
     assert_equal foods(:spinach).name, results[1].name, "expected to find spinach"
     assert_equal foods(:sundried_tomato).name, results[2].name, "expected to find sundried tomato"
   end
+
+  test "should provide the food name for the autocomplete display" do
+    food = foods(:spinach)
+    assert_equal foods(:spinach).name, food.autocomplete_display, "expected method to provide the food name"
+  end
 end

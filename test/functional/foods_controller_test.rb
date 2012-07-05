@@ -12,7 +12,7 @@ class FoodsControllerTest < ActionController::TestCase
   end
 
   test "should find sundried tomato" do
-    get :index, {:format => :json, 'query' => 'sundried t'}
+    get :index, {:format => :json, 'substring' => 'sundried t'}
     assert_response :success
     assert_not_nil assigns(:foods)
 
@@ -24,7 +24,7 @@ class FoodsControllerTest < ActionController::TestCase
   end
 
   test "should find sundried tomato and pesto" do
-    get :index, {:format => :json, 'query' => 'p'}
+    get :index, {:format => :json, 'substring' => 'p'}
     assert_response :success
     assert_not_nil assigns(:foods)
 
@@ -45,9 +45,9 @@ class FoodsControllerTest < ActionController::TestCase
   end
 
   test "should create food" do
-    food = Food.new name: "a new food"
+    food_attributes = {"name" => "a new food"}
     assert_difference('Food.count') do
-      post :create, food: food.attributes
+      post :create, food: food_attributes
     end
 
     assert_redirected_to food_path(assigns(:food))

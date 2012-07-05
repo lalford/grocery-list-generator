@@ -1,9 +1,11 @@
 body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px; }
+  margin: 10;
+  padding: 10;
+  background: #2E550E url(/images/main-wrapper.png) repeat;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #FFFFFF;
+  }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -16,16 +18,25 @@ pre {
   font-size: 11px; }
 
 a {
-  color: #000;
-  &:visited {
-    color: #666; }
+  text-decoration: underline;
+  color: #60B61A;
   &:hover {
-    color: #fff;
-    background-color: #000; } }
+  text-decoration: none; }
+}
+
 
 div {
-  &.field, &.actions {
-    margin-bottom: 10px; } }
+  &.actions {
+    margin-bottom: 10px; } 
+  &.field {
+    float:left; width:500px; margin-left:10px;  padding:10px;
+  }  
+    
+    }
+
+.break-word {
+  word-wrap: break-word;
+}
 
 #notice {
   color: green; }

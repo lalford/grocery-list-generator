@@ -1,9 +1,14 @@
 <h1>Listing foods</h1>
 
+<div style="width: 600px">
+<fieldset>
+	<legend>
+		<b>FOODS</b>
+	</legend>
 <table>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,19 +16,23 @@
 
 <% @foods.each do |food| %>
   <tr>
-    <td><%= food.name %></td>
-    <td><%= food.description %></td>
-    <td><%= link_to 'Show', food %></td>
+    <td width="150"><%= food.name %></td>
+    <td class="break-word" width="250"><%= food.description %></td>
+    <td><%= link_to 'Add', food %></td>
     <td><%= link_to 'Edit', edit_food_path(food) %></td>
     <td><%= link_to 'Destroy', food, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
+</fieldset>
+</div>
 
-<br />
+<br>
+<p>
 
-<%= link_to 'New Food', new_food_path %>
+<%= link_to 'Enter New Food', new_food_path %>
 
 <br />
 
 <%= link_to 'Main Page', '/' %>
+</p>

@@ -10,18 +10,7 @@ class Recipe < ActiveRecord::Base
   attr_accessible :name
   attr_accessible :ingredients_attributes
 
-  # builds a list of all foods as selected/unselected ingredients
-  def build_available_ingredient_list
-    list = [].tap do |ingredient_list|
-      Food.all.each do |food|
-        if ingredient = ingredients.find { |ing| ing.food_id == food.id }
-          #ingredient_list << ingredient.tap { |ing| ing.selected ||= true }
-        else
-          ingredient_list << Ingredient.new(food: food)
-        end
-      end
-    end
-    list.sort! { |i1,i2| i1.food.name <=> i2.food.name }
-  end
-
+  #attr_accessible :id
+  #attr_accessible :created_at
+  #attr_accessible :updated_at
 end

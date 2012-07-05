@@ -37,19 +37,4 @@ class RecipeTest < ActiveSupport::TestCase
     recipe.ingredients= [ingredient1, ingredient2]
     assert recipe.save, "failed to save recipe #{recipe.name} with ingredients #{recipe.ingredients.to_s}"
   end
-
-  test "should build a list of unselected ingredients for the stuffed salmon recipe" do
-    recipe = recipes :stuffed_salmon
-    assert_not_nil recipe, "failed to find stuffed salmon recipe"
-    ingredients = recipe.build_available_ingredient_list
-    assert_not_nil ingredients
-    assert_equal 1, ingredients.length, "expected 1 ingredients, found #{ingredients.length}"
-    ingredients.each do |ingredient|
-      assert_not_nil ingredient.food, "expected ingredient to be associated with a food"
-      assert_nil ingredient.recipe
-      assert_nil ingredient.quantity, "expected no quantity for a food not associated with the recipe"
-      assert_nil ingredient.unit, "expected no unit for a food not associated with the recipe"
-      assert (ingredient.selected == nil or ingredient.selected == false), "expected a food not currently associated with a recipe to not have the selected flag set"
-    end
-  end
 end

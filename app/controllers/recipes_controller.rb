@@ -1,15 +1,4 @@
 class RecipesController < ApplicationController
-  #before_filter :process_ingredients_attrs, only: [:create, :update]
-
-  def process_ingredients_attrs
-    if params[:recipe][:ingredients_attributes] != nil
-      params[:recipe][:ingredients_attributes].values.each do |ing_attr|
-        ing_attr[:_destroy] = true if ing_attr[:selected] != "1"
-        Rails.logger.debug "ingredient attributes = #{ing_attr}"
-      end
-    end
-  end
-
   # GET /recipes
   # GET /recipes.json
   def index
@@ -46,8 +35,6 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
-    @potential_ingredient = Ingredient.new
-    @potential_ingredient.recipe = @recipe
   end
 
   # POST /recipes
@@ -63,16 +50,6 @@ class RecipesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # POST /recipes/1/ingredients
-  def ingredients
-    @ingredient = Ingredient.new(params[:potential_ingredient])
-
-    respond_to do |format|
-      @ingredient.save
-      format.html { render action: "edit" }
     end
   end
 

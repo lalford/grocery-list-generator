@@ -1,8 +1,14 @@
 <h1>Listing recipes</h1>
 
+
+<div style="width: 600px">
+<fieldset>
+	<legend>
+		<b>RECIPES</b>
+	</legend>
 <table>
   <tr>
-    <th>Name</th>
+    <th align="left">Name</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,11 +23,15 @@
   </tr>
 <% end %>
 </table>
+</fieldset>
+</div>
 
-<br />
+<br>
+<p>
 
-<%= link_to 'New Recipe', new_recipe_path %>
+<%= link_to 'Enter New Recipe', new_recipe_path %>
 
 <br />
 
 <%= link_to 'Main Page', '/' %>
+</p>

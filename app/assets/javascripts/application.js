@@ -16,19 +16,3 @@
 //= require jquery-ui
 //= require autocomplete-rails
 //= require jquery_nested_form
-
-function remove_fields(link) {
-  alert("WTF!!!");
-  alert($(link).up(".fields"));
-  $(link).previous("input[type=hidden]").value = "1";
-  $(link).up(".fields").hide();
-}
-
-function add_fields(link, association, content) {
-  alert("WTF!!!");
-  var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + association, "g")
-  $(link).up().insert({
-    before: content.replace(regexp, new_id)
-  });
-}

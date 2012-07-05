@@ -8,10 +8,4 @@ class Ingredient < ActiveRecord::Base
   attr_accessible :quantity
 
   validates_numericality_of :quantity, :allow_nil => true
-
-  attr_accessor :selected
-
-  def food_name
-    "#{@food.name if @food}"
-  end
 end

@@ -1,9 +1,62 @@
+
 <h1>Grocery List Generator</h1>
-<p>Eventually, this might even be useful.</p>
-<%= link_to "Food Labels", labels_path %>
-<br/>
-<%= link_to "Food Items", foods_path %>
-<br/>
-<%= link_to "Recipes", recipes_path %>
-<br/>
-<%= link_to "Ingredient Units", units_path %>
+
+<table border="0">
+	<tr valign="top">
+		<td rowspan="2">
+			<div class="field">
+				<fieldset>
+					<legend><b>Recipes/Foods to be Added</b></legend>
+						Here is where we can put the list
+	
+				</fieldset>
+			</div>
+
+			
+		</td>
+		<td align="left">
+			<br>
+			Add recipe: </td>
+		<td>
+			<br>
+				<input type="text" size="20">
+		</td>
+		<td>
+			<br>
+			<input type="button" value="Add" />
+		</td>
+	</tr>
+	<tr valign="top">
+		<td>
+				
+			Add food:
+		</td>
+		<td>
+				<input type="text" size="20"> 
+			
+		</td>
+		<td>
+			<input type="button" value="Add" />
+		</td>
+	</tr>
+	<tr valign="top">
+		<td align="center">
+			<INPUT TYPE="button" VALUE="Generate List">
+			
+		</td>
+		<td colspan="3"></td>
+		
+	</tr>
+	<tr valign="top">
+		<td align="left" colspan="4">
+		<%= link_to "View/Enter Recipes", recipes_path %><br />
+		<%= link_to "View/Enter Foods", foods_path %>
+		<br>
+		<a href="enter link to under the hood">Under the Hood</a>
+		</td>
+	</tr>
+	
+	
+</table>
+
+
