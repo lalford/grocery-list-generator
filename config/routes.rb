@@ -1,7 +1,7 @@
 GroceryListGenerator::Application.routes.draw do
-  resources :recipes do
-    post 'ingredients'
-  end
+  resources :grocery_lists
+
+  resources :recipes
 
   resources :labels
 

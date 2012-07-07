@@ -1,0 +1,13 @@
+l1_plum:
+  id: 1
+  grocery_list_id: 1
+  food_id: 6
+  quantity: 3
+  unit_id:
+
+l1_spinach:
+  id: 2
+  grocery_list_id: 1
+  food_id: 2
+  quantity: 1
+  unit_id: 3

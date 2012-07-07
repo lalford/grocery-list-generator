@@ -9,8 +9,4 @@ class Recipe < ActiveRecord::Base
 
   attr_accessible :name
   attr_accessible :ingredients_attributes
-
-  #attr_accessible :id
-  #attr_accessible :created_at
-  #attr_accessible :updated_at
 end
