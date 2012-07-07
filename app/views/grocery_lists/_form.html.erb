@@ -1,7 +1,7 @@
-<%= form_for(@grocery_list) do |f| %>
+<%= nested_form_for @grocery_list do |f| %>
   <% if @grocery_list.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@grocery_list.errors.count, "error") %> prohibited this grocery_list from being saved:</h2>
+      <h2><%= pluralize(@grocery_list.errors.count, "error") %> prohibited this grocery list from being saved:</h2>
 
       <ul>
       <% @grocery_list.errors.full_messages.each do |msg| %>
@@ -10,8 +10,58 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <br/>
+
+  <div class="nested_form">
+  <h2>Recipes</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th/>
+    </tr>
+    <%= f.fields_for :grocery_list_recipes do |glr_form| %>
+      <tr class="fields">
+        <% current_glr_recipe_name = glr_form.object.recipe.name if (glr_form.object and glr_form.object.recipe) %>
+        <%= glr_form.hidden_field :recipe_id %>
+        <td><%= autocomplete_field_tag 'recipe', current_glr_recipe_name, autocomplete_recipe_name_recipes_path, :id_element => "#grocery_list_grocery_list_recipes_attributes_new_grocery_list_recipes_recipe_id" %></td>
+        <td><%= glr_form.text_field :quantity %></td>
+        <td><%= glr_form.link_to_remove "Remove recipe" %></td>
+      </tr>
+    <% end %>
+    <tr><td colspan="3"><%= f.link_to_add "Add Recipe", :grocery_list_recipes %></td></tr>
+  </table>
+  </div>
+
+  <div class="nested_form">
+  <h2>A La Carte</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th/>
+    </tr>
+    <%= f.fields_for :grocery_list_foods do |glf_form| %>
+      <tr class="fields">
+        <% current_glf_food_name = glf_form.object.food.name if (glf_form.object and glf_form.object.food) %>
+        <%= glf_form.hidden_field :food_id %>
+        <td><%= autocomplete_field_tag 'food', current_glf_food_name, autocomplete_food_name_foods_path, :id_element => "#grocery_list_grocery_list_foods_attributes_new_grocery_list_foods_food_id" %></td>
+        <td><%= glf_form.text_field :quantity %></td>
+        <td><%= glf_form.collection_select :unit_id, Unit.all, :id, :short_name, :include_blank => true %></td>
+        <td><%= glf_form.link_to_remove "Remove food" %></td>
+      </tr>
+    <% end %>
+    <tr><td colspan="4"><%= f.link_to_add "Add Food", :grocery_list_foods %></td></tr>
+  </table>
+  </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save List"%>
   </div>
 <% end %>

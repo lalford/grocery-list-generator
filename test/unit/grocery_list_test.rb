@@ -18,7 +18,7 @@ class GroceryListTest < ActiveSupport::TestCase
     assert !grocery_list.save, "should not save grocery list without a name"
   end
 
-  test "should create a new grocery list with the foods plums and pine nuts and the stuffed salmon recipe" do
+  test "should create a new grocery list with the food plums and the recipe stuffed salmon" do
     grocery_list = GroceryList.new { |l|
       l.name = "a test list"
     }
@@ -28,9 +28,13 @@ class GroceryListTest < ActiveSupport::TestCase
       glf.quantity = 2
       glf.unit = units(:bag)
     }
+    grocery_list_recipe1 = GroceryListRecipe.new { |glr|
+      glr.grocery_list = grocery_lists(:l1)
+      glr.recipe = recipes(:stuffed_salmon)
+      glr.quantity = 3
+    }
     grocery_list.grocery_list_foods = [grocery_list_food1]
-    grocery_list.foods = [foods(:pine_nuts)]
-    grocery_list.recipes = [recipes(:stuffed_salmon)]
+    grocery_list.grocery_list_recipes = [grocery_list_recipe1]
     assert grocery_list.save, "failed to save grocery list #{grocery_list.name}"
   end
 end

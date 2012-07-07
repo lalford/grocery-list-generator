@@ -1,5 +1,41 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Name:</b>
+  <%= @grocery_list.name %>
+</p>
+
+<p>
+  <b>Recipes</b>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% for recipe in @grocery_list.recipes.sort! { |r1,r2| r1.name <=> r2.name } %>
+      <tr>
+        <td><%= recipe.name %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
+<p>
+  <b>A La Carte</b>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+    <% for glf in @grocery_list.grocery_list_foods.sort! { |glf1,glf2| glf1.food.name <=> glf2.food.name } %>
+      <tr>
+        <td><%= glf.food.name %></td>
+        <td><%= glf.quantity %></td>
+        <td><%= glf.unit.short_name if glf.unit %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
 
 <%= link_to 'Edit', edit_grocery_list_path(@grocery_list) %> |
 <%= link_to 'Back', grocery_lists_path %>

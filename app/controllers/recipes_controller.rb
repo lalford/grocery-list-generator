@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  autocomplete :recipe, :name, :display_value => :autocomplete_display
+
   # GET /recipes
   # GET /recipes.json
   def index

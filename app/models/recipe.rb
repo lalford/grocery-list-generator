@@ -9,4 +9,8 @@ class Recipe < ActiveRecord::Base
 
   attr_accessible :name
   attr_accessible :ingredients_attributes
+
+  def autocomplete_display
+    "#{self.name}"
+  end
 end
