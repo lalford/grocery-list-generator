@@ -43,12 +43,18 @@ class GroceryListsController < ApplicationController
     @grocery_list = GroceryList.new(params[:grocery_list])
 
     respond_to do |format|
-      if @grocery_list.save
-        format.html { redirect_to @grocery_list, notice: 'Grocery list was successfully created.' }
-        format.json { render json: @grocery_list, status: :created, location: @grocery_list }
+      if params[:commit] == GENERATE_LIST
+        @generated_list = @grocery_list.generate
+        format.html { render action: "generated_list" }
       else
-        format.html { render action: "new" }
-        format.json { render json: @grocery_list.errors, status: :unprocessable_entity }
+        # normal create action
+        if @grocery_list.save
+          format.html { redirect_to @grocery_list, notice: 'Grocery list was successfully created.' }
+          format.json { render json: @grocery_list, status: :created, location: @grocery_list }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @grocery_list.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

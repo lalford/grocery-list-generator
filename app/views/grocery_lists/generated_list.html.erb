@@ -1,0 +1,24 @@
+<p>
+  <b>Name:</b>
+  <%= @grocery_list.name %>
+</p>
+
+<p>
+  <b>Food Items to Acquire</b>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+    <% @generated_list.keys.sort.each do |food_name| %>
+      <tr>
+        <td><%= food_name %></td>
+        <td><%= @generated_list[food_name]["quantity"] %></td>
+        <td><%= @generated_list[food_name]["unit_name"] %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
+<%= link_to 'Main Page', '/' %>
