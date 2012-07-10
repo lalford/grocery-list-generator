@@ -6,21 +6,23 @@
 </p>
 
 <p>
-  <b>Recipes</b>
+  <b>RECIPES</b>
   <table border="1">
     <tr>
       <th>Name</th>
+      <th>Quantity</th>
     </tr>
-    <% for recipe in @grocery_list.recipes.sort! { |r1,r2| r1.name <=> r2.name } %>
+    <% for recipe in @grocery_list.grocery_list_recipes.sort! { |r1,r2| r1.name <=> r2.name } %>
       <tr>
-        <td><%= recipe.name %></td>
+        <td><%= glr.recipe.name %></td>
+        <td><%= glr.quantity %></td>
       </tr>
     <% end %>
   </table>
 </p>
 
 <p>
-  <b>A La Carte</b>
+  <b>A LA CARTE</b>
   <table border="1">
     <tr>
       <th>Name</th>

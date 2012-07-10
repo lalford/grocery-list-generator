@@ -19,11 +19,11 @@
 
  <div class="nested_form">
   <fieldset>
-  		<legend><b>Recipes</b></legend>
+  		<legend><b>RECIPES</b></legend>
   <table>
     <tr align="left">
-      <th>Name</th>
-      <th>Quantity</th>
+      <th class="name">Name</th>
+      <th class="quantity">Quantity</th>
       <th/>
     </tr>
     <%= f.fields_for :grocery_list_recipes do |glr_form| %>
@@ -42,12 +42,12 @@
  
   <div class="nested_form">
   <fieldset>
-  		<legend><b>A La Carte</b></legend>
+  		<legend><b>A LA CARTE</b></legend>
   <table>
   	
     <tr align="left">
-      <th>Name</th>
-      <th>Quantity</th>
+      <th class="name">Name</th>
+      <th class="quantity">Quantity</th>
       <th>Unit</th>
       <th/>
     </tr>

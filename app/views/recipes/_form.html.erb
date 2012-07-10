@@ -11,16 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
 
-  <h2>Ingredients</h2>
+  <div class="nested_form">
+  <fieldset>
+  	<legend><b>INGREDIENTS</b></legend>
   <table>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
+    <tr align="left">
+      <th class="name">Name</th>
+      <th class="quantity">Quantity</th>
       <th>Unit</th>
       <th/>
     </tr>
@@ -28,14 +30,16 @@
     <tr class="fields">
       <% current_ingredient_food_name = ingredient_form.object.food.name if (ingredient_form.object and ingredient_form.object.food) %>
       <%= ingredient_form.hidden_field :food_id %>
-      <td><%= autocomplete_field_tag 'food', current_ingredient_food_name, autocomplete_food_name_foods_path, :id_element => "#recipe_ingredients_attributes_new_ingredients_food_id" %></td>
-      <td><%= ingredient_form.text_field :quantity %></td>
+      <td><%= autocomplete_field_tag 'food', current_ingredient_food_name, autocomplete_food_name_foods_path, :size => 30, :id_element => "#recipe_ingredients_attributes_new_ingredients_food_id" %></td>
+      <td><%= ingredient_form.text_field :quantity, :size => 5 %></td>
       <td><%= ingredient_form.collection_select :unit_id, Unit.all, :id, :short_name, :include_blank => true %></td>
       <td><%= ingredient_form.link_to_remove "Remove ingredient" %></td>
     </tr>
   <% end %>
     <tr><td colspan="4"><%= f.link_to_add "Add Ingredient", :ingredients %></td></tr>
   </table>
+  </fieldset>
+  </div>
   <br/>
 
   <div class="actions">

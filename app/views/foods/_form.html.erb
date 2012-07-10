@@ -10,14 +10,19 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
+  <div class="nested_form">
+<fieldset>
+	<legend><b>NEW FOOD</b></legend>
+  <div>
+    <b><%= f.label :name %></b><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+  <br />
+  <div >
+    <b><%= f.label :description %></b><br />
+    <%= f.text_field :description, :size => 75 %>
+  </div>
+  </fieldset>
   </div>
   <% for label in Label.find(:all) %>
     <div>
