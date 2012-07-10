@@ -1,7 +1,19 @@
-<h1>Grocery List Generator</h1>
+<html>
+	<header>
+		
+		<title>Grocery List Generator: Main Page</title>
+	</header>
+	
+
+<body>
+	
+	<h1>Grocery List Generator</h1>
 
 <%= render 'form' %>
 
 <%= link_to "View Saved Lists", grocery_lists_path %><br/>
 <%= link_to "View", recipes_path %>/<%= link_to "Enter", new_recipe_path %> Recipes<br/>
 <%= link_to "View", foods_path %>/<%= link_to "Enter", new_food_path %> Foods<br/>
+
+</body>
+</html>
