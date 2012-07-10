@@ -29,13 +29,15 @@ div {
   &.actions {
     margin-bottom: 10px; } 
   &.field {
-    float:left; width:500px; height:20px; margin-left:10px;  padding:10px;
+    float:left; height:20px; margin-left:10px;  padding:10px;
   }
   &.nested_form {
-    float:left; width:500px; height:20px; margin-left:10px;  padding:10px;
+    align:left; width:500px; margin-left:10px;  padding:10px;
   }
     
     }
+    
+
 
 .break-word {
   word-wrap: break-word;
