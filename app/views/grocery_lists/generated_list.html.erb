@@ -14,8 +14,8 @@
     <% @generated_list.keys.sort.each do |food_name| %>
       <tr>
         <td><%= food_name %></td>
-        <td><%= @generated_list[food_name]["quantity"] %></td>
-        <td><%= @generated_list[food_name]["unit_name"] %></td>
+        <td><%= @generated_list[food_name][GroceryList::QUANTITY_KEY] %></td>
+        <td><%= @generated_list[food_name][GroceryList::UNIT_NAME_KEY] %></td>
       </tr>
     <% end %>
   </table>

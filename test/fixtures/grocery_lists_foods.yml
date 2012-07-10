@@ -11,3 +11,10 @@ l1_spinach:
   food_id: 2
   quantity: 1
   unit_id: 3
+
+l1_pine_nuts:
+  id: 3
+  grocery_list_id: 1
+  food_id: 4
+  quantity: 10
+  unit_id: 1

@@ -25,6 +25,8 @@ class GroceryList < ActiveRecord::Base
   #     "unit_name" => "unit name 2" },
   #   ...
   # }
+  QUANTITY_KEY = "quantity"
+  UNIT_NAME_KEY = "unit_name"
   def generate
     generated_list = {}
 
@@ -33,22 +35,13 @@ class GroceryList < ActiveRecord::Base
       recipe_quantity = glr.quantity
       recipe = glr.recipe
       recipe.ingredients.each do |ingredient|
-        generated_list = generated_list.merge(build_food_item_hash(ingredient.food.name, (recipe_quantity * ingredient.quantity), ingredient.unit)) {
-          |food_name, current_food_info, next_food_info|
-          # TODO - check units, implement conversions
-          puts "for food #{food_name}, adding additional quantity #{next_food_info["quantity"]} to current quantity #{current_food_info["quantity"]}"
-          current_food_info["quantity"] + next_food_info["quantity"]
-        }
-      end
+        merge_purchase_items(generated_list, ingredient.food.name, (recipe_quantity * ingredient.quantity), ingredient.unit)
+      end if recipe and recipe.ingredients
     end if grocery_list_recipes
 
     # add a la carte foods
     grocery_list_foods.each do |glf|
-      generated_list = generated_list.merge(build_food_item_hash(glf.food.name, glf.quantity, glf.unit)) { |food_name, current_food_info, next_food_info|
-        # TODO - check units, implement conversions
-        puts "for food #{food_name}, adding additional quantity #{next_food_info["quantity"]} to current quantity #{current_food_info["quantity"]}"
-        current_food_info["quantity"] + next_food_info["quantity"]
-      }
+      merge_purchase_items(generated_list, glf.food.name, glf.quantity, glf.unit)
     end if grocery_list_foods
 
     generated_list
@@ -56,8 +49,37 @@ class GroceryList < ActiveRecord::Base
 
   private
 
+  def set_unit_display_name(unit)
+    if !unit
+      unit_name = ""
+    elsif unit.long_name and !unit.long_name.blank?
+      unit_name = unit.long_name
+    elsif unit.short_name and !unit.short_name.blank?
+      unit_name = unit.short_name
+    else
+      unit_name = ""
+    end
+    unit_name
+  end
+
   def build_food_item_hash(food_name, quantity, unit)
-    unit_name = unit.long_name if unit
-    { food_name => { "quantity" => quantity, "unit_name" => unit_name } }
+    unit_name = set_unit_display_name(unit)
+    { food_name => { QUANTITY_KEY => quantity, UNIT_NAME_KEY => unit_name } }
+  end
+
+  def merge_purchase_items(current_list, food_name, quantity, unit)
+    current_list.merge!(build_food_item_hash(food_name, quantity, unit)) { |food_name, current_food_info, next_food_info|
+      if current_food_info[UNIT_NAME_KEY] == next_food_info[UNIT_NAME_KEY]
+        puts "for food #{food_name}, adding additional quantity #{next_food_info[QUANTITY_KEY]} to current quantity #{current_food_info[QUANTITY_KEY]}"
+        new_food_info = { QUANTITY_KEY => (current_food_info[QUANTITY_KEY] + next_food_info[QUANTITY_KEY]),
+          UNIT_NAME_KEY => current_food_info[UNIT_NAME_KEY] }
+      else
+        puts "for food #{food_name}, unit names are mismatched so just printing the addition string without conversion for now"
+        new_food_info = { QUANTITY_KEY => "#{current_food_info[QUANTITY_KEY]} + #{next_food_info[QUANTITY_KEY]}",
+          UNIT_NAME_KEY => "#{current_food_info[UNIT_NAME_KEY]} + #{next_food_info[UNIT_NAME_KEY]}" }
+      end
+      puts "new food info:\n#{new_food_info}"
+      new_food_info
+    }
   end
 end
