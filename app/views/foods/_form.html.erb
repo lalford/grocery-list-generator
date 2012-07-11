@@ -11,26 +11,24 @@
     </div>
   <% end %>
   <div class="nested_form">
-<fieldset>
-	<legend><b>NEW FOOD</b></legend>
-  <div>
-    <b><%= f.label :name %></b><br />
-    <%= f.text_field :name %>
-  </div>
-  <br />
-  <div >
-    <b><%= f.label :description %></b><br />
-    <%= f.text_field :description, :size => 75 %>
-  </div>
-  </fieldset>
-  </div>
-  <% for label in Label.find(:all) %>
-    <div>
-      <%= check_box_tag "food[label_ids][]", label.id, @food.labels.include?(label) %>
-      <%= label.name %>
+    <fieldset>
+      <legend><b>NEW FOOD</b></legend>
+      <div>
+        <b><%= f.label :name %></b><br />
+        <%= f.text_field :name %>
+      </div>
+      <br />
+      <div>
+        <b><%= f.label :description %></b><br />
+        <%= f.text_field :description, :size => 75 %>
+      </div>
+      <div>
+        <b><%= f.label :store_section %></b><br />
+        <%= f.collection_select :store_section_id, StoreSection.all, :id, :name, :include_blank => true %>
+      </div>
+    </fieldset>
+    <div class="actions">
+      <%= f.submit %>
     </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>

@@ -2,28 +2,34 @@ salmon:
   id: 1
   name: Salmon
   description: a fish
+  store_section_id: 2
 
 spinach:
   id: 2
   name: Spinach
   description: greens
+  store_section_id: 3
 
 sundried_tomato:
   id: 3
   name: Sundried Tomato
   description:
+  store_section_id:
 
 pine_nuts:
   id: 4
   name: Pine Nuts
   description: nuts
+  store_section_id:
 
 pesto:
   id: 5
   name: Pesto
   description: sauce
+  store_section_id:
 
 plum:
   id: 6
   name: Plum
   description: pitted fruit
+  store_section_id: 3

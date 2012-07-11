@@ -11,12 +11,8 @@
 </p>
 
 <p>
-  <b>Labels:</b>
-  <br/>
-  <% for label in @food.labels %>
-    <%= label.name %>
-    <br/>
-  <% end %>
+  <b>Store Section:</b>
+  <%= @food.store_section.name if @food.store_section %>
 </p>
 
 <%= link_to 'Edit', edit_food_path(@food) %> |

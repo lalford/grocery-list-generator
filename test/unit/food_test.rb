@@ -56,4 +56,16 @@ class FoodTest < ActiveSupport::TestCase
     food = foods(:spinach)
     assert_equal foods(:spinach).name, food.autocomplete_display, "expected method to provide the food name"
   end
+
+  test "should find salmon in the seafood section" do
+    salmon = Food.find foods(:salmon).id
+    assert_not_nil salmon, "should have found salmon"
+    assert_equal store_sections(:seafood), salmon.store_section, "should have found salmon in the seafood section"
+  end
+
+  test "should find the 2 items in the produce section" do
+    produce = Food.find_all_by_store_section_id store_sections(:produce).id
+    assert_not_nil produce, "should have found some produce"
+    assert_equal 2, produce.count, "should have found 2 foods in the produce section"
+  end
 end

@@ -64,7 +64,7 @@ class FoodsControllerTest < ActionController::TestCase
   end
 
   test "should update food" do
-    put :update, id: @food, food: @food.attributes
+    put :update, id: @food, food: {}
     assert_redirected_to food_path(assigns(:food))
   end
 

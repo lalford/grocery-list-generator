@@ -15,5 +15,7 @@ GroceryListGenerator::Application.routes.draw do
 
   resources :units
 
+  resources :store_sections
+
   root :to => 'grocery_lists#new'
 end
