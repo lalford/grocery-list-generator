@@ -11,11 +11,13 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
   <% @grocery_lists.each do |grocery_list| %>
     <tr>
       <td><%= grocery_list.name %></td>
+      <td><%= link_to 'Generate', generate_grocery_list_path(grocery_list) %></td>
       <td><%= link_to 'Show', grocery_list %></td>
       <td><%= link_to 'Edit', edit_grocery_list_path(grocery_list) %></td>
       <td><%= link_to 'Destroy', grocery_list, confirm: 'Are you sure?', method: :delete %></td>

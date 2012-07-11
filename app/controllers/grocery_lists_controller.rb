@@ -21,6 +21,17 @@ class GroceryListsController < ApplicationController
     end
   end
 
+  # GET /grocery_lists/1/generate
+  def generate
+    @grocery_list = GroceryList.find(params[:id])
+    @generated_list = @grocery_list.generate
+
+    respond_to do |format|
+      format.html { render action: "generated_list" }
+      format.json { head :no_content }
+    end
+  end
+
   # GET /grocery_lists/new
   # GET /grocery_lists/new.json
   def new
@@ -46,6 +57,7 @@ class GroceryListsController < ApplicationController
       if params[:commit] == GENERATE_LIST
         @generated_list = @grocery_list.generate
         format.html { render action: "generated_list" }
+        format.json { head :no_content }
       else
         # normal create action
         if @grocery_list.save
@@ -66,8 +78,14 @@ class GroceryListsController < ApplicationController
 
     respond_to do |format|
       if @grocery_list.update_attributes(params[:grocery_list])
-        format.html { redirect_to @grocery_list, notice: 'Grocery list was successfully updated.' }
-        format.json { head :no_content }
+        if params[:commit] == GENERATE_LIST
+          @generated_list = @grocery_list.generate
+          format.html { render action: "generated_list" }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to @grocery_list, notice: 'Grocery list was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @grocery_list.errors, status: :unprocessable_entity }
@@ -85,5 +103,11 @@ class GroceryListsController < ApplicationController
       format.html { redirect_to grocery_lists_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def generate_and_render_list
+
   end
 end

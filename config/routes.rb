@@ -1,5 +1,7 @@
 GroceryListGenerator::Application.routes.draw do
-  resources :grocery_lists
+  resources :grocery_lists do
+    get :generate, :on => :member
+  end
 
   resources :recipes do
     get :autocomplete_recipe_name, :on => :collection
