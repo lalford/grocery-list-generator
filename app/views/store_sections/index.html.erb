@@ -1,0 +1,27 @@
+<h1>Listing Store Sections</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @store_sections.each do |store_section| %>
+  <tr>
+    <td><%= store_section.name %></td>
+    <td><%= link_to 'Show', store_section %></td>
+    <td><%= link_to 'Edit', edit_store_section_path(store_section) %></td>
+    <td><%= link_to 'Destroy', store_section, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Store Section', new_store_section_path %>
+
+<br />
+
+<%= link_to 'Main Page', '/' %>

@@ -1,0 +1,15 @@
+meat:
+  id: 1
+  name: Meat
+
+seafood:
+  id: 2
+  name: Seafood
+
+produce:
+  id: 3
+  name: Produce
+
+frozen:
+  id: 4
+  name: Frozen
