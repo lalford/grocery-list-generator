@@ -7,5 +7,6 @@ class GroceryListRecipe < ActiveRecord::Base
   attr_accessible :recipe_id
   attr_accessible :quantity
 
+  validates :recipe_id, :presence => true
   validates_numericality_of :quantity, :allow_nil => true
 end

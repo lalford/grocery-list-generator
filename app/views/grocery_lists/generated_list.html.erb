@@ -3,23 +3,20 @@
   <%= @grocery_list.name %>
 </p>
 
-<% @generated_list.keys.sort.each do |store_section_name| %>
+<ul>
+  <% @generated_list.keys.sort.each do |store_section_name| %>
+  <li><%= store_section_name %></li>
   <% section_food_list = @generated_list[store_section_name] %>
-  <b><%= store_section_name %> Section</b>
-  <table border="1">
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Unit</th>
-    </tr>
+  <ul>
     <% section_food_list.keys.sort.each do |food_name| %>
-      <tr>
+      <li><table><tr>
         <td><%= food_name %></td>
         <td><%= section_food_list[food_name][GroceryList::QUANTITY_KEY] %></td>
         <td><%= section_food_list[food_name][GroceryList::UNIT_NAME_KEY] %></td>
-      </tr>
+      </tr></table></li>
     <% end %>
-  </table>
-<% end %>
+  </ul>
+  <% end %>
+</ul>
 
 <%= link_to 'Main Page', '/' %>

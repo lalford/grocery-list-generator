@@ -72,6 +72,7 @@ class GroceryList < ActiveRecord::Base
   end
 
   def set_store_section_display_name(food)
+    puts "food = #{food}"
     if food.store_section and food.store_section.name and !food.store_section.name.blank?
       store_section_name = food.store_section.name
     else

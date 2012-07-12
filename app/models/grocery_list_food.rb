@@ -9,5 +9,7 @@ class GroceryListFood < ActiveRecord::Base
   attr_accessible :unit_id
   attr_accessible :quantity
 
-  validates_numericality_of :quantity, :allow_nil => true
+  validates :food_id, :presence => true
+  validates :quantity, :presence => true
+  validates_numericality_of :quantity
 end
