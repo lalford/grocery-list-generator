@@ -13,8 +13,6 @@ GroceryListGenerator::Application.routes.draw do
     get :autocomplete_food_name, :on => :collection
   end
 
-  resources :units
-
   resources :store_sections
 
   root :to => 'grocery_lists#new'

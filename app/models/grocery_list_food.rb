@@ -3,10 +3,8 @@ class GroceryListFood < ActiveRecord::Base
 
   belongs_to :grocery_list
   belongs_to :food
-  belongs_to :unit
 
   attr_accessible :food_id
-  attr_accessible :unit_id
   attr_accessible :quantity
   attr_accessible :unit_name
 
