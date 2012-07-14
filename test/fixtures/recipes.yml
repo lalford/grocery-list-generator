@@ -1,5 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 stuffed_salmon:
   id: 1
   name: Stuffed Salmon
+  servings: 2
+  directions:

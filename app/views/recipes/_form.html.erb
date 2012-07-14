@@ -40,8 +40,18 @@
   </table>
   </fieldset>
   </div>
-  <br/>
 
+  <div style="font: bold">
+    <%= f.label :servings %><br />
+    <%= f.text_field :servings %>
+  </div>
+
+  <div style="font: bold">
+    <%= f.label :directions %><br />
+    <%= f.text_area :directions %>
+  </div>
+
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

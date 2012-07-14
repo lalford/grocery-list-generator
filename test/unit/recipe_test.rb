@@ -18,9 +18,11 @@ class RecipeTest < ActiveSupport::TestCase
     assert !recipe.save, "should not save recipe without a name"
   end
 
-  test "should create a new recipe with plums and pesto" do
+  test "should create a new recipe with plums and pesto that serves 3 and contains directions" do
     recipe = Recipe.new { |r|
       r.name= "horrible recipe"
+      r.servings = 3
+      r.directions = "not sure what you would do with this"
     }
     ingredient1 = Ingredient.new { |i|
       i.food = foods(:plum)

@@ -23,5 +23,15 @@
   </table>
 </p>
 
+<p>
+  <b>Servings:</b>
+  <%= @recipe.servings %>
+</p>
+
+<p>
+  <b>Directions:</b><br/>
+  <%= @recipe.directions %>
+</p>
+
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
