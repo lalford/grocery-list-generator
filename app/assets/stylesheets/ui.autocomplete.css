@@ -1,0 +1,26 @@
+body {
+	
+}
+
+.ui-menu { 
+			padding: 2px; 
+			margin: 0;
+			display:block; 		
+			overflow-y :scroll;
+			color: #ffffff }
+			
+
+.ui-widget { font-size: 1em; }
+.ui-widget-content { border: 1px solid #a6c9e2; background: #fcfdfd; color: #222222; }
+.ui-widget-content a { color: #222222; }
+.ui-widget-header { border: 1px solid #4297d7; background: #2191c0; color: #eaf5f7; font-weight: bold; }
+.ui-widget-header a { color: #eaf5f7; }	
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #77d5f7; background: #0078ae; font-weight: normal; color: #ffffff; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #ffffff; text-decoration: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { background: #79c9ec; border: 1px solid #448dae; font-weight: normal; color: #026890; }
+.ui-state-hover a, .ui-state-hover a:hover { color: #026890; text-decoration: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #acdd4a; background: #6eac2c; font-weight: normal; color: #ffffff; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
+.ui-widget :active { outline: none; }	
+			
