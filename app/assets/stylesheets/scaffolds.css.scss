@@ -1,10 +1,16 @@
 body {
-  margin: 10;
-  padding: 10;
-  background: #2E550E url(/images/main-wrapper.png) repeat;
+  margin-left: 120px;
+  margin-top: 25px;
+  padding: 10px;
+  background-color: #a0a0a0; 
+  background-image: url(/images/recipe-bg.jpg);
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-position: left top;
+  background-size: 300px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  color: #FFFFFF;
+  color: #330099;
   }
 
 p, ol, ul, td {
@@ -19,9 +25,19 @@ pre {
 
 a {
   text-decoration: underline;
-  color: #60B61A;
+  color: #ffff00;
   &:hover {
   text-decoration: none; }
+}
+
+input[type="text"] {
+  background-color: #fafad2;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #B0C4DE;
+  
 }
 
 th {
@@ -46,7 +62,10 @@ div {
     
     }
     
-
+fieldset {
+  border-width: 5px;
+  border-radius: 5px;
+}
 
 .break-word {
   word-wrap: break-word;

@@ -23,14 +23,14 @@
   <table>
     <tr align="left">
       <th class="name">Name</th>
-      <th class="quantity">Quantity</th>
+      <th class="quantity">Servings</th>
       <th/>
     </tr>
     <%= f.fields_for :grocery_list_recipes do |glr_form| %>
       <tr>
         <% current_glr_recipe_name = glr_form.object.recipe.name if (glr_form.object and glr_form.object.recipe) %>
         <%= glr_form.hidden_field :recipe_id %>
-        <td><%= autocomplete_field_tag 'recipe', current_glr_recipe_name, autocomplete_recipe_name_recipes_path,:size => 30, :id_element => "#grocery_list_grocery_list_recipes_attributes_new_grocery_list_recipes_recipe_id" %></td>
+        <td><%= autocomplete_field_tag 'recipe', current_glr_recipe_name, autocomplete_recipe_name_recipes_path,:size => 30, :skip_style => true, :id_element => "#grocery_list_grocery_list_recipes_attributes_new_grocery_list_recipes_recipe_id" %></td>
         <td><%= glr_form.text_field :quantity, :size => 5 %></td>
         <td><%= glr_form.link_to_remove "Remove recipe" %></td>
       </tr>
@@ -47,7 +47,7 @@
   	
     <tr align="left">
       <th class="name">Name</th>
-      <th class="quantity">Quantity</th>
+      <th class="quantity"></th>
       <th>Unit</th>
       <th/>
     </tr>
