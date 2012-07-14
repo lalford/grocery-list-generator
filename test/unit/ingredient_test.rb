@@ -7,7 +7,7 @@ class IngredientTest < ActiveSupport::TestCase
       i.recipe = recipes(:stuffed_salmon)
     }
     assert ingredient.save, "should have assigned plums to the stuffed salmon recipe, even if it is a bad idea"
-    assert ingredient.update_attributes({:quantity => 2.1, :unit_id => units(:bag).id}), "should have added a quantity and unit to the new ingredient"
+    assert ingredient.update_attributes({:quantity => 2.1, :unit_name => 'lbs'}), "should have added a quantity and unit to the new ingredient"
   end
 
   test "should fail to save with a non-numeric quantity" do

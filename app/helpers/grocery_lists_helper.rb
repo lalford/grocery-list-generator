@@ -7,10 +7,8 @@ module GroceryListsHelper
       unit_definitions[unit1].display_name <=> unit_definitions[unit2].display_name
     }
     unit_select_list = []
-    puts "enabled unit keys =\n#{ENABLED_UNIT_KEYS}"
     unit_keys.each do |unit_key|
       unit = unit_definitions[unit_key]
-      puts "unit key = #{unit_key}, unit name = #{unit.name}"
       unit_select_list << unit.display_name if ENABLED_UNIT_KEYS.include?(unit.name)
     end
     unit_select_list

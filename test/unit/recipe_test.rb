@@ -26,13 +26,13 @@ class RecipeTest < ActiveSupport::TestCase
       i.food = foods(:plum)
       i.recipe = recipe
       i.quantity = 2
-      i.unit = units(:bag)
+      i.unit_name = 'lbs'
     }
     ingredient2 = Ingredient.new { |i|
       i.food = foods(:pesto)
       i.recipe = recipe
       i.quantity = 0.23
-      i.unit = units(:tbsp)
+      i.unit_name = 'tbs'
     }
     recipe.ingredients= [ingredient1, ingredient2]
     assert recipe.save, "failed to save recipe #{recipe.name} with ingredients #{recipe.ingredients.to_s}"

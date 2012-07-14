@@ -26,7 +26,6 @@ class GroceryListTest < ActiveSupport::TestCase
       glf.grocery_list = grocery_lists(:l1)
       glf.food = foods(:plum)
       glf.quantity = 2
-      glf.unit = units(:bag)
     }
     grocery_list_recipe1 = GroceryListRecipe.new { |glr|
       glr.grocery_list = grocery_lists(:l1)
@@ -38,32 +37,31 @@ class GroceryListTest < ActiveSupport::TestCase
     assert grocery_list.save, "failed to save grocery list #{grocery_list.name}"
   end
 
-  # TODO - add conversions for units to get rid of the silly string formatting
   # Current example:
   #
   # l1:
   #   recipes:
   #     stuffed_salmon (2):
-  #       salmon, 2, filet
-  #       spinach, .5, bag
-  #       sundried tomato, .5, tablespoon
-  #       pine nuts, .5, bag
-  #       pesto, 8, tablespoon
+  #       salmon, 2, lbs
+  #       spinach, 16, oz
+  #       sundried tomato, .5, tbs
+  #       pine nuts, 10, oz
+  #       pesto, 8, tbs
   #   foods:
-  #     pine nuts, 10, ounce
+  #     pine nuts, 10, oz
   #     plum, 3, nil
-  #     spinach, 1, bag
+  #     spinach, 1, lbs
   #
   # generated_list:
   #   no section
-  #     pesto, 16, tablespoon
-  #     pine nuts, 1 + 10, bag + ounce
-  #     sundried tomato, 1, tablespoon
+  #     pesto, 16, tbs
+  #     pine nuts, 30, oz
+  #     sundried tomato, 1, tbs
   #   produce
   #     plum, 3, blank
-  #     spinach, 2, bag
+  #     spinach, 48, oz
   #   seafood
-  #     salmon, 4, filet
+  #     salmon, 4, lbs
   #
   test "should generate the grocery list hash from fixture data" do
     grocery_list = grocery_lists(:l1)
@@ -96,25 +94,28 @@ class GroceryListTest < ActiveSupport::TestCase
   def validate_section_food_list(section_food_list)
     section_food_list.keys.each do |food_name|
       puts "food key = #{food_name}"
+      actual_quantity = section_food_list[food_name][GroceryList::QUANTITY_KEY].to_f
+      actual_unit_name = section_food_list[food_name][GroceryList::UNIT_NAME_KEY]
+      expected_unit_name = Unit("#{section_food_list[food_name][GroceryList::UNIT_NAME_KEY]}").to_s.split[1] if section_food_list[food_name][GroceryList::UNIT_NAME_KEY]
       case food_name
         when foods(:pesto).name
-          assert_equal 16, section_food_list[food_name][GroceryList::QUANTITY_KEY], "expected quantities to match"
-          assert_equal units(:tbsp).long_name, section_food_list[food_name][GroceryList::UNIT_NAME_KEY], "expected unit name to match"
+          assert_equal 16, actual_quantity, "expected quantities to match"
+          assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:pine_nuts).name
-          assert_equal "1.0 + 10.0", section_food_list[food_name][GroceryList::QUANTITY_KEY], "expected quantities to match"
-          assert_equal "#{units(:bag).short_name} + #{units(:oz).long_name}", section_food_list[food_name][GroceryList::UNIT_NAME_KEY], "expected unit name to match"
+          assert_equal 30, actual_quantity, "expected quantities to match"
+          assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:plum).name
-          assert_equal 3, section_food_list[food_name][GroceryList::QUANTITY_KEY], "expected quantities to match"
-          assert_blank section_food_list[food_name][GroceryList::UNIT_NAME_KEY], "expected no unit"
+          assert_equal 3, actual_quantity, "expected quantities to match"
+          assert_blank expected_unit_name, "expected no unit"
         when foods(:salmon).name
-          assert_equal 4, section_food_list[food_name][GroceryList::QUANTITY_KEY], "expected quantities to match"
-          assert_equal units(:filet).short_name, section_food_list[food_name][GroceryList::UNIT_NAME_KEY], "expected unit name to match"
+          assert_equal 4, actual_quantity, "expected quantities to match"
+          assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:spinach).name
-          assert_equal 2, section_food_list[food_name][GroceryList::QUANTITY_KEY], "expected quantities to match"
-          assert_equal units(:bag).short_name, section_food_list[food_name][GroceryList::UNIT_NAME_KEY], "expected unit name to match"
+          assert_equal 48, actual_quantity, "expected quantities to match"
+          assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:sundried_tomato).name
-          assert_equal 1, section_food_list[food_name][GroceryList::QUANTITY_KEY], "expected quantities to match"
-          assert_equal units(:tbsp).long_name, section_food_list[food_name][GroceryList::UNIT_NAME_KEY], "expected unit name to match"
+          assert_equal 1, actual_quantity, "expected quantities to match"
+          assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         else
           assert false, "food #{food_name} was not expected in the list"
       end
