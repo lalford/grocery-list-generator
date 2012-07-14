@@ -6,8 +6,8 @@
 
 <% @store_sections.each do |store_section| %>
   <tr>
-    <td><%= store_section.name %></td>
-    <td><%= link_to 'Edit', edit_store_section_path(store_section) %></td>
+    <td style="padding-right: 15px"><%= store_section.name %></td>
+    <td style="padding-right: 5px"><%= link_to 'Edit', edit_store_section_path(store_section) %></td>
     <td><%= link_to 'Destroy', store_section, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
