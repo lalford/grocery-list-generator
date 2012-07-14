@@ -6,6 +6,7 @@ gem 'mysql2'
 gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'nested_form'
+gem 'ruby-units'
 
 group :assets do
   gem 'sass-rails'
