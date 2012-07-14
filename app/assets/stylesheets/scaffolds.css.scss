@@ -14,9 +14,13 @@ body {
   }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: courier, bookman;
   font-size: 13px;
   line-height: 18px; }
+  
+h1 {
+  text-shadow: 1px 1px #EBF0FA;
+}
 
 pre {
   background-color: #eee;
@@ -36,7 +40,7 @@ input[type="text"] {
 }
 
 input[type="submit"] {
-  background-color: #c2c2f0;
+  background-color: #EBF0FA;
   
 }
 
@@ -65,11 +69,11 @@ div {
 fieldset {
   border-width: 5px;
   border-radius: 5px;
-  border-color: #d6d6f5;
+  border-color: #EBF0FA;
 }
 
 legend {
-  border: 3px #d6d6f5 dotted;
+  border: 3px #EBF0FA dotted;
   border-radius: 3px;
   padding: 7px;
 }

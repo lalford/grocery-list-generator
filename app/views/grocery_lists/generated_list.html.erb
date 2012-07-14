@@ -3,13 +3,14 @@
   <%= @grocery_list.name %>
 </p>
 
-<ul>
+	<ul>
   <% @generated_list.keys.sort.each do |store_section_name| %>
   <li><%= store_section_name %></li>
   <% section_food_list = @generated_list[store_section_name] %>
   <ul>
     <% section_food_list.keys.sort.each do |food_name| %>
-      <li><table><tr>
+      <li style="vertical-align: top">
+      	<table><tr>
         <td><%= food_name %></td>
         <td><%= section_food_list[food_name][GroceryList::QUANTITY_KEY] %></td>
         <td><%= section_food_list[food_name][GroceryList::UNIT_NAME_KEY] %></td>
@@ -18,5 +19,6 @@
   </ul>
   <% end %>
 </ul>
+
 
 <%= link_to 'Main Page', '/' %>
