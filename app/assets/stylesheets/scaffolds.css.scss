@@ -10,7 +10,7 @@ body {
   background-size: 300px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  color: #330099;
+  color: #000066;
   }
 
 p, ol, ul, td {
@@ -25,7 +25,7 @@ pre {
 
 a {
   text-decoration: underline;
-  color: #ffff00;
+  color: #FFE34D;
   &:hover {
   text-decoration: none; }
 }
@@ -36,7 +36,7 @@ input[type="text"] {
 }
 
 input[type="submit"] {
-  background-color: #B0C4DE;
+  background-color: #c2c2f0;
   
 }
 
@@ -65,6 +65,13 @@ div {
 fieldset {
   border-width: 5px;
   border-radius: 5px;
+  border-color: #d6d6f5;
+}
+
+legend {
+  border: 3px #d6d6f5 dotted;
+  border-radius: 3px;
+  padding: 7px;
 }
 
 .break-word {
@@ -72,7 +79,7 @@ fieldset {
 }
 
 #notice {
-  color: green; }
+  color: #2952A3; }
 
 .field_with_errors {
   padding: 2px;
