@@ -79,8 +79,9 @@ class GroceryList < ActiveRecord::Base
       current_section_food_hash_set.merge(next_section_food_hash_set) { |food_name, current_food_info, next_food_info|
         if Unit(current_food_info[UNIT_NAME_KEY]) =~ Unit(next_food_info[UNIT_NAME_KEY])
           puts "for food #{food_name}, adding additional quantity #{next_food_info[QUANTITY_KEY]} to current quantity #{current_food_info[QUANTITY_KEY]}"
+          unit_result = (make_unit(current_food_info) + make_unit(next_food_info)).to_s
           new_food_info = {
-            QUANTITY_KEY => (make_unit(current_food_info) + make_unit(next_food_info)),
+            QUANTITY_KEY => unit_result.split[0], # only take the quantity portion of the Unit object's string
             UNIT_NAME_KEY => current_food_info[UNIT_NAME_KEY] }
         else
           puts "for food #{food_name}, cannot convert unit #{next_food_info[UNIT_NAME_KEY]} to #{current_food_info[UNIT_NAME_KEY]}"

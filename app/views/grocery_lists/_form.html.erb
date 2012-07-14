@@ -56,7 +56,7 @@
         <%= glf_form.hidden_field :food_id %>
         <td><%= autocomplete_field_tag 'food', current_glf_food_name, autocomplete_food_name_foods_path, :size => 30, :id_element => "#grocery_list_grocery_list_foods_attributes_new_grocery_list_foods_food_id" %></td>
         <td><%= glf_form.text_field :quantity, :size => 5 %></td>
-        <td><%= glf_form.collection_select :unit_name, GroceryListsHelper.build_unit_select_list, :first, :second, :include_blank => true %></td>
+        <td><%= glf_form.collection_select :unit_name, GroceryListsHelper.build_unit_select_list, :to_s, :to_s, :include_blank => true %></td>
         <td><%= glf_form.link_to_remove "Remove food" %></td>
       </tr>
     <% end %>
