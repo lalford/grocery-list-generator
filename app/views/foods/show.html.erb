@@ -17,3 +17,6 @@
 
 <%= link_to 'Edit', edit_food_path(@food) %> |
 <%= link_to 'Back', foods_path %>
+<% unless notice.nil? or notice.blank? %>
+  <br/><%= link_to 'Enter Another Food', new_food_path %>
+<% end %>

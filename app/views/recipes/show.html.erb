@@ -35,3 +35,6 @@
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
+<% unless notice.nil? or notice.blank? %>
+  <br/><%= link_to 'Enter Another Recipe', new_recipe_path %>
+<% end %>
