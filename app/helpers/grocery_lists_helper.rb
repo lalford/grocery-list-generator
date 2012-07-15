@@ -14,6 +14,18 @@ module GroceryListsHelper
     unit_select_list
   end
 
+  # if the generator could not convert the units, the quantity and unit sums are returned added together
+  def self.construct_formula_display_for_unsupported_conversion(quantity_sum, unit_sum)
+    quantities = quantity_sum.split "+"
+    units = unit_sum.split "+"
+    formula = ""
+    quantities.zip(units).each do |q, u|
+      formula = formula + " + " unless formula.empty?
+      formula = formula + "#{q} #{u}"
+    end
+    formula
+  end
+
   private
 
   # strings match keys to the ruby-units definitions hash
@@ -28,5 +40,4 @@ module GroceryListsHelper
     '<ounce>',
     '<gram>',
     '<milliliter>']
-
 end
