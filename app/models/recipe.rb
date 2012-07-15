@@ -7,8 +7,7 @@ class Recipe < ActiveRecord::Base
   validates :name, :presence => true
   validates_uniqueness_of :name
   validates_numericality_of :servings, :only_integer => true
-  validates_length_of :directions, :maximum => 500, :allow_blank => true
-
+  
   attr_accessible :name
   attr_accessible :servings
   attr_accessible :directions
