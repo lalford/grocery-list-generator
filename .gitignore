@@ -15,7 +15,6 @@
 /tmp
 
 # Ignore lock file, auto generated readme's
-Gemfile.lock
 README.rdoc
 ./log
 
