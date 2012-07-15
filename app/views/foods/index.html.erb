@@ -1,6 +1,6 @@
 <h1>Listing foods</h1>
 
-<div style="width: 600px">
+<div style="width: 900px">
 <fieldset>
 	<legend>
 		<b>FOODS</b>
@@ -16,8 +16,8 @@
 
 <% @foods.each do |food| %>
   <tr>
-    <td width="150"><%= food.name %></td>
-    <td class="break-word" width="250"><%= food.description %></td>
+    <td width="250"><%= food.name %></td>
+    <td class="break-word" width=450"><%= food.description %></td>
     <td><%= link_to 'Show', food %></td>
     <td><%= link_to 'Edit', edit_food_path(food) %></td>
     <td><%= link_to 'Destroy', food, confirm: 'Are you sure?', method: :delete %></td>
