@@ -1,12 +1,18 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
-gem 'mysql2'
 gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'nested_form'
 gem 'ruby-units'
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'mysql2'
+end
 
 group :assets do
   gem 'sass-rails'
