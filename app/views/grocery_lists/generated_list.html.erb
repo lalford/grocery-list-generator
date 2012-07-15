@@ -10,15 +10,18 @@
   <ul>
     <% section_food_list.keys.sort.each do |food_name| %>
       <li style="vertical-align: top">
-      	<table><tr>
-        <td><%= food_name %></td>
-        <td><%= section_food_list[food_name][GroceryList::QUANTITY_KEY] %></td>
-        <td><%= section_food_list[food_name][GroceryList::UNIT_NAME_KEY] %></td>
-      </tr></table></li>
+      	<%= food_name %>:
+        <% if section_food_list[food_name][GroceryList::QUANTITY_KEY].include? "+" %>
+          <%= GroceryListsHelper.construct_formula_display_for_unsupported_conversion(
+            section_food_list[food_name][GroceryList::QUANTITY_KEY],
+            section_food_list[food_name][GroceryList::UNIT_NAME_KEY]) %>
+        <% else %>
+          <%= section_food_list[food_name][GroceryList::QUANTITY_KEY] %> <%= section_food_list[food_name][GroceryList::UNIT_NAME_KEY] %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
   <% end %>
 </ul>
-
 
 <%= link_to 'Main Page', '/' %>

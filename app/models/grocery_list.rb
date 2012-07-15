@@ -77,20 +77,40 @@ class GroceryList < ActiveRecord::Base
   def merge_purchase_items(current_list, food, quantity, unit_name)
     current_list.merge!(build_store_section_hash(food, quantity, unit_name)) { |store_section_name, current_section_food_hash_set, next_section_food_hash_set|
       current_section_food_hash_set.merge(next_section_food_hash_set) { |food_name, current_food_info, next_food_info|
-        if Unit(current_food_info[UNIT_NAME_KEY]) =~ Unit(next_food_info[UNIT_NAME_KEY])
-          puts "for food #{food_name}, adding additional quantity #{next_food_info[QUANTITY_KEY]} to current quantity #{current_food_info[QUANTITY_KEY]}"
-          unit_result = (make_unit(current_food_info) + make_unit(next_food_info)).to_s
-          new_food_info = {
-            QUANTITY_KEY => unit_result.split[0], # only take the quantity portion of the Unit object's string
-            UNIT_NAME_KEY => current_food_info[UNIT_NAME_KEY] }
+        u1 = current_food_info[UNIT_NAME_KEY]
+        u2 = next_food_info[UNIT_NAME_KEY]
+
+        if u1.blank? and u2.blank?
+          new_food_info = add_quantities(food_name, current_food_info, next_food_info)
+        elsif !u1.blank? and !u2.blank?
+          if Unit(u1) =~ Unit(u2)
+            new_food_info = add_quantities(food_name, current_food_info, next_food_info)
+          else
+            new_food_info = build_mismatched_quantity_and_unit_strings(food_name, current_food_info, next_food_info)
+          end
         else
-          puts "for food #{food_name}, cannot convert unit #{next_food_info[UNIT_NAME_KEY]} to #{current_food_info[UNIT_NAME_KEY]}"
-          new_food_info = { QUANTITY_KEY => "#{current_food_info[QUANTITY_KEY]} + #{next_food_info[QUANTITY_KEY]}",
-            UNIT_NAME_KEY => "#{current_food_info[UNIT_NAME_KEY]} + #{next_food_info[UNIT_NAME_KEY]}" }
+          new_food_info = build_mismatched_quantity_and_unit_strings(food_name, current_food_info, next_food_info)
         end
         puts "new food info:\n#{new_food_info}"
         new_food_info
       }
     }
+  end
+
+  private
+
+  def add_quantities(food_name, current_food_info, next_food_info)
+    puts "for food #{food_name}, adding additional quantity #{next_food_info[QUANTITY_KEY]} to current quantity #{current_food_info[QUANTITY_KEY]}"
+    unit_result = (make_unit(current_food_info) + make_unit(next_food_info)).to_s
+    { QUANTITY_KEY => unit_result.split[0], # only take the quantity portion of the Unit object's string
+      UNIT_NAME_KEY => current_food_info[UNIT_NAME_KEY] }
+  end
+
+  def build_mismatched_quantity_and_unit_strings(food_name, current_food_info, next_food_info)
+    puts "for food #{food_name}, cannot convert unit #{next_food_info[UNIT_NAME_KEY]} to #{current_food_info[UNIT_NAME_KEY]}"
+    u1 = current_food_info[UNIT_NAME_KEY].blank? ? "n/a" : current_food_info[UNIT_NAME_KEY]
+    u2 = next_food_info[UNIT_NAME_KEY].blank? ? "n/a" : next_food_info[UNIT_NAME_KEY]
+    { QUANTITY_KEY => "#{current_food_info[QUANTITY_KEY]} + #{next_food_info[QUANTITY_KEY]}",
+      UNIT_NAME_KEY => "#{u1} + #{u2}" }
   end
 end
