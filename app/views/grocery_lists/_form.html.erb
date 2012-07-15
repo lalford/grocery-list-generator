@@ -12,14 +12,14 @@
   <% end %>
   
   <div>
-    <%= f.label :name %><br />
+    <%= f.label :name_your_list %><br />
     <%= f.text_field :name %>
   </div>
   <br/>
 
  <div class="nested_form">
   <fieldset>
-  		<legend><b>RECIPES</b></legend>
+  		<legend><b>RECIPES TO ADD</b></legend>
   <table>
     <tr align="left">
       <th class="name">Name</th>
@@ -35,14 +35,14 @@
         <td><%= glr_form.link_to_remove "Remove recipe" %></td>
       </tr>
     <% end %>
-    <tr><td colspan="3"><%= f.link_to_add "Add Recipe", :grocery_list_recipes %></td></tr>
+    <tr><td colspan="3"><%= f.link_to_add "Search for Recipe", :grocery_list_recipes %></td></tr>
   </table>
   </fieldset>
  </div>
  
   <div class="nested_form">
   <fieldset>
-  <legend><b>A LA CARTE</b></legend>
+  <legend><b>A LA CARTE ITEMS TO ADD</b></legend>
   <table>
     <tr align="left">
       <th class="name">Name</th>
@@ -61,7 +61,7 @@
       </tr>
     <% end %>
     <tr>
-    	<td colspan="4"><%= f.link_to_add "Add Food", :grocery_list_foods %></td>
+    	<td colspan="4"><%= f.link_to_add "Search for Food", :grocery_list_foods %></td>
 
     	</tr>
   </table>

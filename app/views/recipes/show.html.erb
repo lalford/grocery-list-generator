@@ -1,41 +1,38 @@
 <p id="notice"><%= notice %></p>
+<fieldset class="recipe">
 
-<p>
-  <b>Name:</b>
-  <%= @recipe.name %>
-</p>
+  <legend><b>  <%= @recipe.name %> </b></legend>
 
-<p>
-  <b>Ingredients</b>
-  <table border="1">
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Unit</th>
-    </tr>
+
+<p style="margin-left: 100px">
+  <b><u>Ingredients</u></b>
+  <table cellpadding="1.5" style="margin-left: 100px">
+
     <% for ingredient in @recipe.ingredients.sort! { |i1,i2| i1.food.name <=> i2.food.name } %>
-      <tr>
-        <td><%= ingredient.food.name %></td>
+      <tr>        
         <td><%= ingredient.quantity %></td>
         <td><%= ingredient.unit_name %></td>
+        <td><%= ingredient.food.name %></td>
       </tr>
     <% end %>
   </table>
 </p>
 
-<p>
+<p style="margin-left: 100px">
   <b>Servings:</b>
   <%= @recipe.servings %>
 </p>
-
-<p>
+<br>
+<p style="margin-left: 100px">
   <b>Directions:</b><br/>
   <%= @recipe.directions %>
 </p>
+</fieldset>
+<br>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %> | 
-<br/><%= link_to 'Main Page', '/' %> <br>
+<%= link_to 'Main Page', '/' %> <br>
 <% unless notice.nil? or notice.blank? %>
   <br/><%= link_to 'Enter Another Recipe', new_recipe_path %>
 <% end %>

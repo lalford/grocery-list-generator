@@ -34,13 +34,15 @@ a {
   text-decoration: none; }
 }
 
-input[type="text"] {
+input[type="text"], select {
   background-color: #fafad2;
   border-radius: 4px;
+  border:none;
 }
 
 input[type="submit"] {
   background-color: #EBF0FA;
+  border-radius: 5px;
   
 }
 
@@ -49,6 +51,7 @@ textarea {
   border-radius: 4px;
   border: none;
 }
+
 
 th {
 
@@ -76,9 +79,17 @@ fieldset {
   border-width: 5px;
   border-radius: 5px;
   border-color: #EBF0FA;
+  &.recipe {
+    width: 800px;
+    background: url(/images/notebook-whitebk.gif);
+    background-repeat: repeat;
+    border: none;
+    
+  }
 }
 
 legend {
+  background-color: #a0a0a0;
   border: 3px #EBF0FA dotted;
   border-radius: 3px;
   padding: 7px;
