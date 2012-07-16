@@ -34,5 +34,7 @@
 <%= link_to 'Back', recipes_path %> | 
 <%= link_to 'Main Page', '/' %> <br>
 <% unless notice.nil? or notice.blank? %>
-  <br/><%= link_to 'Enter Another Recipe', new_recipe_path %>
+  <br/>
+  <%= link_to 'Enter New Food', new_food_path %> |
+  <%= link_to 'Enter Another Recipe', new_recipe_path %>
 <% end %>

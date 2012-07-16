@@ -10,7 +10,7 @@
   <table border="1">
     <tr>
       <th>Name</th>
-      <th>Quantity</th>
+      <th>Servings</th>
     </tr>
     <% for glr in @grocery_list.grocery_list_recipes.sort! { |glr1,glr2| glr1.recipe.name <=> glr2.recipe.name } %>
       <tr>
