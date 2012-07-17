@@ -33,13 +33,8 @@ class GroceryList < ActiveRecord::Base
       recipe_quantity = glr.quantity ? glr.quantity : 1
       recipe = glr.recipe
       recipe.ingredients.each do |ingredient|
-        puts "before default, recipe quantity = #{recipe_quantity}"
-        puts "before default, ingredient quantity = #{ingredient.quantity}"
         recipe_quantity = 1 if !recipe_quantity
-        ingredient_quantity = ingredient.quantity ? ingredient.quantity : 1
-        puts "after default, recipe quantity = #{recipe_quantity}"
-        puts "after default, ingredient quantity = #{ingredient_quantity}"
-
+        ingredient_quantity = ingredient.quantity ? ingredient.quantity : 0
         quantity = (recipe_quantity * ingredient_quantity)
         merge_purchase_items(generated_list, ingredient.food, quantity, ingredient.unit_name)
       end if recipe and recipe.ingredients
@@ -56,7 +51,6 @@ class GroceryList < ActiveRecord::Base
   private
 
   def set_store_section_display_name(food)
-    puts "food = #{food}"
     if food.store_section and food.store_section.name and !food.store_section.name.blank?
       store_section_name = food.store_section.name
     else
@@ -83,7 +77,6 @@ class GroceryList < ActiveRecord::Base
       current_section_food_hash_set.merge(next_section_food_hash_set) { |food_name, current_food_info, next_food_info|
         u1 = current_food_info[UNIT_NAME_KEY]
         u2 = next_food_info[UNIT_NAME_KEY]
-
         if u1.blank? and u2.blank?
           new_food_info = add_quantities(food_name, current_food_info, next_food_info)
         elsif !u1.blank? and !u2.blank?
@@ -95,7 +88,6 @@ class GroceryList < ActiveRecord::Base
         else
           new_food_info = build_mismatched_quantity_and_unit_strings(food_name, current_food_info, next_food_info)
         end
-        puts "new food info:\n#{new_food_info}"
         new_food_info
       }
     }

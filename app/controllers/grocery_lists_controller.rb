@@ -58,7 +58,7 @@ class GroceryListsController < ApplicationController
     respond_to do |format|
       if params[:commit] == GENERATE_LIST
         @generated_list = @grocery_list.generate
-        GroceryListMailer.generated_list_email(@grocery_list.name, @generated_list).deliver unless to_email.nil? or to_email.blank?
+        GroceryListMailer.generated_list_email(@grocery_list.name, @generated_list, to_email).deliver unless to_email.nil? or to_email.blank?
         format.html { render action: "generated_list" }
         format.json { head :no_content }
       else
@@ -85,7 +85,7 @@ class GroceryListsController < ApplicationController
       if @grocery_list.update_attributes(params[:grocery_list])
         if params[:commit] == GENERATE_LIST
           @generated_list = @grocery_list.generate
-          GroceryListMailer.generated_list_email(@grocery_list.name, @generated_list).deliver unless to_email.nil? or to_email.blank?
+          GroceryListMailer.generated_list_email(@grocery_list.name, @generated_list, to_email).deliver unless to_email.nil? or to_email.blank?
           format.html { render action: "generated_list" }
           format.json { head :no_content }
         else

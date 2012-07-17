@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  autocomplete :food, :name, :display_value => :autocomplete_display
+  autocomplete :food, :name, :display_value => :autocomplete_display, :full => true
 
   # GET /foods
   # GET /foods.json
