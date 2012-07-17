@@ -20,7 +20,7 @@ class GroceryList < ActiveRecord::Base
   # user entered email, if populated the generate list action will also send an email
   attr_accessor :to_email
   attr_accessible :to_email
-  validates :to_email, :email => true
+  validates :to_email, :email => true, :allow_nil => true
 
   # produce a hash of foods to purchase for the generated list, grouped by store section
   NO_SECTION_KEY = "No Section"
@@ -71,8 +71,6 @@ class GroceryList < ActiveRecord::Base
   end
 
   def make_unit(food_info)
-    quantity = food_info[QUANTITY_KEY] ? food_info[QUANTITY_KEY] : 0
-    puts "quantity = #{quantity}"
     Unit "#{food_info[QUANTITY_KEY]} #{food_info[UNIT_NAME_KEY]}"
   end
 

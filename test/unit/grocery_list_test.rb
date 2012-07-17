@@ -4,7 +4,7 @@ class GroceryListTest < ActiveSupport::TestCase
   test "should create a new grocery list" do
     grocery_list = GroceryList.new
     grocery_list.name = "fake list"
-    assert grocery_list.save, "failed to save #{grocery_list.name}"
+    assert grocery_list.save, "failed to save #{grocery_list.name}. #{grocery_list.errors.to_hash}"
   end
 
   test "should fail to create a grocery list with an existing name" do
@@ -34,7 +34,7 @@ class GroceryListTest < ActiveSupport::TestCase
     }
     grocery_list.grocery_list_foods = [grocery_list_food1]
     grocery_list.grocery_list_recipes = [grocery_list_recipe1]
-    assert grocery_list.save, "failed to save grocery list #{grocery_list.name}"
+    assert grocery_list.save, "failed to save grocery list #{grocery_list.name}. #{grocery_list.errors.to_hash}"
   end
 
   # Current example:
