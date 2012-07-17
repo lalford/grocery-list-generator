@@ -20,6 +20,7 @@ class GroceryList < ActiveRecord::Base
   # user entered email, if populated the generate list action will also send an email
   attr_accessor :to_email
   attr_accessible :to_email
+  validates :to_email, :email => true
 
   # produce a hash of foods to purchase for the generated list, grouped by store section
   NO_SECTION_KEY = "No Section"
@@ -42,7 +43,8 @@ class GroceryList < ActiveRecord::Base
 
     # add a la carte foods
     grocery_list_foods.each do |glf|
-      merge_purchase_items(generated_list, glf.food, glf.quantity, glf.unit_name)
+      food_quantity = glf.quantity ? glf.quantity : 0
+      merge_purchase_items(generated_list, glf.food, food_quantity, glf.unit_name)
     end if grocery_list_foods
 
     generated_list
@@ -69,6 +71,8 @@ class GroceryList < ActiveRecord::Base
   end
 
   def make_unit(food_info)
+    quantity = food_info[QUANTITY_KEY] ? food_info[QUANTITY_KEY] : 0
+    puts "quantity = #{quantity}"
     Unit "#{food_info[QUANTITY_KEY]} #{food_info[UNIT_NAME_KEY]}"
   end
 
