@@ -30,13 +30,13 @@ class GroceryList < ActiveRecord::Base
 
     # add foods from recipe ingredients
     grocery_list_recipes.each do |glr|
-      recipe_quantity = glr.quantity
+      recipe_quantity = glr.quantity ? glr.quantity : 1
       recipe = glr.recipe
       recipe.ingredients.each do |ingredient|
         puts "before default, recipe quantity = #{recipe_quantity}"
         puts "before default, ingredient quantity = #{ingredient.quantity}"
         recipe_quantity = 1 if !recipe_quantity
-        ingredient_quantity = ingredient ? ingredient.quantity : 1
+        ingredient_quantity = ingredient.quantity ? ingredient.quantity : 1
         puts "after default, recipe quantity = #{recipe_quantity}"
         puts "after default, ingredient quantity = #{ingredient_quantity}"
 

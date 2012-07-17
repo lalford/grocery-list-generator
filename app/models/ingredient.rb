@@ -6,5 +6,6 @@ class Ingredient < ActiveRecord::Base
   attr_accessible :quantity
   attr_accessible :unit_name
 
-  validates_numericality_of :quantity, :allow_nil => true
+  validates :quantity, :presence => true
+  validates_numericality_of :quantity
 end
