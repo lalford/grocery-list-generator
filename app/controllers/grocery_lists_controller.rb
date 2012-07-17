@@ -52,10 +52,13 @@ class GroceryListsController < ApplicationController
   # POST /grocery_lists.json
   def create
     @grocery_list = GroceryList.new(params[:grocery_list])
+    to_email = params[:grocery_list][:to_email]
+    puts "to email: #{to_email}"
 
     respond_to do |format|
       if params[:commit] == GENERATE_LIST
         @generated_list = @grocery_list.generate
+        GroceryListMailer.generated_list_email(@grocery_list.name, @generated_list).deliver unless to_email.nil? or to_email.blank?
         format.html { render action: "generated_list" }
         format.json { head :no_content }
       else
@@ -75,11 +78,14 @@ class GroceryListsController < ApplicationController
   # PUT /grocery_lists/1.json
   def update
     @grocery_list = GroceryList.find(params[:id])
+    to_email = params[:grocery_list][:to_email]
+    puts "to email: #{to_email}"
 
     respond_to do |format|
       if @grocery_list.update_attributes(params[:grocery_list])
         if params[:commit] == GENERATE_LIST
           @generated_list = @grocery_list.generate
+          GroceryListMailer.generated_list_email(@grocery_list.name, @generated_list).deliver unless to_email.nil? or to_email.blank?
           format.html { render action: "generated_list" }
           format.json { head :no_content }
         else

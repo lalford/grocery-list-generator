@@ -17,6 +17,10 @@ class GroceryList < ActiveRecord::Base
   attr_accessible :grocery_list_recipes_attributes
   attr_accessible :grocery_list_foods_attributes
 
+  # user entered email, if populated the generate list action will also send an email
+  attr_accessor :to_email
+  attr_accessible :to_email
+
   # produce a hash of foods to purchase for the generated list, grouped by store section
   NO_SECTION_KEY = "No Section"
   QUANTITY_KEY = "quantity"
@@ -62,7 +66,7 @@ class GroceryList < ActiveRecord::Base
   end
 
   def build_food_item_hash(food_name, quantity, unit_name)
-    { food_name => { QUANTITY_KEY => quantity, UNIT_NAME_KEY => unit_name } }
+    { food_name => { QUANTITY_KEY => quantity.to_s, UNIT_NAME_KEY => unit_name } }
   end
 
   def build_store_section_hash(food, quantity, unit_name)

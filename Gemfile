@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'nested_form'
 gem 'ruby-units'
+gem 'axlsx'
 
 group :development, :test do
   gem 'sqlite3'
