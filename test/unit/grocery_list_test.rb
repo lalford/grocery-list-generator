@@ -41,7 +41,7 @@ class GroceryListTest < ActiveSupport::TestCase
   #
   # l1:
   #   recipes:
-  #     stuffed_salmon (2):
+  #     stuffed_salmon (2 servings):
   #       salmon, 2, lbs
   #       spinach, 16, oz
   #       sundried tomato, .5, tbs
@@ -54,14 +54,14 @@ class GroceryListTest < ActiveSupport::TestCase
   #
   # generated_list:
   #   no section
-  #     pesto, 16, tbs
-  #     pine nuts, 30, oz
-  #     sundried tomato, 1, tbs
+  #     pesto, 8, tbs
+  #     pine nuts, 20, oz
+  #     sundried tomato, .5, tbs
   #   produce
   #     plum, 3, blank
-  #     spinach, 48, oz
+  #     spinach, 32, oz
   #   seafood
-  #     salmon, 4, lbs
+  #     salmon, 2, lbs
   #
   test "should generate the grocery list hash from fixture data" do
     grocery_list = grocery_lists(:l1)
@@ -99,22 +99,22 @@ class GroceryListTest < ActiveSupport::TestCase
       expected_unit_name = Unit("#{section_food_list[food_name][GroceryList::UNIT_NAME_KEY]}").to_s.split[1] if section_food_list[food_name][GroceryList::UNIT_NAME_KEY]
       case food_name
         when foods(:pesto).name
-          assert_equal 16, actual_quantity, "expected quantities to match"
+          assert_equal 8, actual_quantity, "expected quantities to match"
           assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:pine_nuts).name
-          assert_equal 30, actual_quantity, "expected quantities to match"
+          assert_equal 20, actual_quantity, "expected quantities to match"
           assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:plum).name
           assert_equal 3, actual_quantity, "expected quantities to match"
           assert_blank expected_unit_name, "expected no unit"
         when foods(:salmon).name
-          assert_equal 4, actual_quantity, "expected quantities to match"
+          assert_equal 2, actual_quantity, "expected quantities to match"
           assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:spinach).name
-          assert_equal 48, actual_quantity, "expected quantities to match"
+          assert_equal 32, actual_quantity, "expected quantities to match"
           assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         when foods(:sundried_tomato).name
-          assert_equal 1, actual_quantity, "expected quantities to match"
+          assert_equal 0.5, actual_quantity, "expected quantities to match"
           assert_equal expected_unit_name, actual_unit_name, "expected unit name to match"
         else
           assert false, "food #{food_name} was not expected in the list"

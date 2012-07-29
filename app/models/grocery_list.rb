@@ -31,12 +31,14 @@ class GroceryList < ActiveRecord::Base
 
     # add foods from recipe ingredients
     grocery_list_recipes.each do |glr|
-      recipe_quantity = glr.quantity ? glr.quantity : 1
+      desired_servings = glr.quantity ? glr.quantity : 1
       recipe = glr.recipe
+      recipe_servings = recipe.servings ? recipe.servings : 1
       recipe.ingredients.each do |ingredient|
-        recipe_quantity = 1 if !recipe_quantity
+        desired_servings = 1 if !desired_servings
         ingredient_quantity = ingredient.quantity ? ingredient.quantity : 0
-        quantity = (recipe_quantity * ingredient_quantity)
+        single_serving_ingredient_quantity = ingredient_quantity / recipe_servings
+        quantity = (desired_servings * single_serving_ingredient_quantity)
         merge_purchase_items(generated_list, ingredient.food, quantity, ingredient.unit_name)
       end if recipe and recipe.ingredients
     end if grocery_list_recipes
