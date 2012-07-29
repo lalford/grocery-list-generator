@@ -3,8 +3,9 @@ class RecipesController < ApplicationController
 
   # GET /recipes
   # GET /recipes.json
+  #   ?substring=<substring of recipe name>
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.search(params[:substring])
 
     respond_to do |format|
       format.html # index.html.erb

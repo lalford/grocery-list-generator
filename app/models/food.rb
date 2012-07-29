@@ -19,7 +19,7 @@ class Food < ActiveRecord::Base
     if query
       find(:all, :conditions => ['name LIKE ?', "#{query}%"], :order => 'name')
     else
-      find(:all)
+      find(:all, :order => 'name')
     end
   end
 end

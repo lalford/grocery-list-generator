@@ -16,4 +16,12 @@ class Recipe < ActiveRecord::Base
   def autocomplete_display
     "#{self.name}"
   end
+
+  def self.search(query)
+    if query
+      find(:all, :conditions => ['name LIKE ?', "#{query}%"], :order => 'name')
+    else
+      find(:all, :order => 'name')
+    end
+  end
 end
