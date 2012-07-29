@@ -1,6 +1,7 @@
 require 'mail'
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record,attribute,value)
+    r = false
     begin
       value.split(",").each do |address|
         m = Mail::Address.new(address)

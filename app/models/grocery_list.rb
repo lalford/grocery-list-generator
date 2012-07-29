@@ -20,7 +20,7 @@ class GroceryList < ActiveRecord::Base
   # user entered email, if populated the generate list action will also send an email
   attr_accessor :to_email
   attr_accessible :to_email
-  validates :to_email, :email => true, :allow_nil => true
+  validates :to_email, :email => true, :allow_nil => true, :allow_blank => true
 
   # produce a hash of foods to purchase for the generated list, grouped by store section
   NO_SECTION_KEY = "No Section"
