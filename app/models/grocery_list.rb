@@ -7,8 +7,8 @@ class GroceryList < ActiveRecord::Base
   has_many :grocery_list_foods, dependent: :destroy
   has_many :foods, :through => :grocery_list_foods
 
-  accepts_nested_attributes_for :grocery_list_recipes, allow_destroy: true
-  accepts_nested_attributes_for :grocery_list_foods, allow_destroy: true
+  accepts_nested_attributes_for :grocery_list_recipes, allow_destroy: true, :reject_if => proc { |attributes| attributes['recipe_id'].blank? }
+  accepts_nested_attributes_for :grocery_list_foods, allow_destroy: true, :reject_if => proc { |attributes| attributes['food_id'].blank? }
 
   validates :name, :presence => true
   validates_uniqueness_of :name

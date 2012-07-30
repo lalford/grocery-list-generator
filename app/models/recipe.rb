@@ -2,7 +2,7 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, dependent: :destroy
   has_many :foods, :through => :ingredients
 
-  accepts_nested_attributes_for :ingredients, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, allow_destroy: true, :reject_if => proc { |attributes| attributes['food_id'].blank? }
 
   validates :name, :presence => true
   validates_uniqueness_of :name
