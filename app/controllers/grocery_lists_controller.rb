@@ -1,4 +1,6 @@
 class GroceryListsController < ApplicationController
+  before_filter :handle_fractional_quantities, :only => [:create, :update]
+
   # GET /grocery_lists
   # GET /grocery_lists.json
   def index
@@ -111,9 +113,7 @@ class GroceryListsController < ApplicationController
     end
   end
 
-  private
-
-  def generate_and_render_list
-
+  def handle_fractional_quantities
+    compute_fractional_quantities params[:grocery_list][:grocery_list_foods_attributes] unless params[:grocery_list][:grocery_list_foods_attributes].nil?
   end
 end

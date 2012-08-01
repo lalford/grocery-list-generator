@@ -32,7 +32,7 @@
     <% for glf in @grocery_list.grocery_list_foods.sort! { |glf1,glf2| glf1.food.name <=> glf2.food.name } %>
       <tr>
         <td><%= glf.food.name %></td>
-        <td><%= glf.quantity %></td>
+        <td><%= number_with_precision(glf.quantity, :precision => 2) %></td>
         <td><%= glf.unit_name %></td>
       </tr>
     <% end %>

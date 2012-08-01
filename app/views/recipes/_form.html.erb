@@ -31,7 +31,7 @@
       <% current_ingredient_food_name = ingredient_form.object.food.name if (ingredient_form.object and ingredient_form.object.food) %>
       <%= ingredient_form.hidden_field :food_id %>
       <td><%= autocomplete_field_tag 'food', current_ingredient_food_name, autocomplete_food_name_foods_path, :size => 30, :id_element => "#recipe_ingredients_attributes_new_ingredients_food_id" %></td>
-      <td><%= ingredient_form.text_field :quantity, :size => 5 %></td>
+      <td><%= ingredient_form.text_field :quantity, :size => 5, :value => (number_with_precision(ingredient_form.object.quantity, :precision => 2)) %></td>
       <td><%= ingredient_form.collection_select :unit_name, GroceryListsHelper.build_unit_select_list, :to_s, :to_s, :include_blank => true %></td>
       <td><%= ingredient_form.link_to_remove "Remove ingredient" %></td>
     </tr>

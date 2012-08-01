@@ -16,7 +16,7 @@
             section_food_list[food_name][GroceryList::QUANTITY_KEY],
             section_food_list[food_name][GroceryList::UNIT_NAME_KEY]) %>
         <% else %>
-          <%= section_food_list[food_name][GroceryList::QUANTITY_KEY] %> <%= section_food_list[food_name][GroceryList::UNIT_NAME_KEY] %>
+          <%= number_with_precision(section_food_list[food_name][GroceryList::QUANTITY_KEY], :precision => 2) %> <%= section_food_list[food_name][GroceryList::UNIT_NAME_KEY] %>
         <% end %>
       </li>
     <% end %>

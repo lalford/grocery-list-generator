@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   autocomplete :recipe, :name, :display_value => :autocomplete_display, :full => true
+  before_filter :handle_fractional_quantities, :only => [:create, :update]
 
   # GET /recipes
   # GET /recipes.json
@@ -82,5 +83,9 @@ class RecipesController < ApplicationController
       format.html { redirect_to recipes_url }
       format.json { head :no_content }
     end
+  end
+
+  def handle_fractional_quantities
+    compute_fractional_quantities params[:recipe][:ingredients_attributes] unless params[:recipe][:ingredients_attributes].nil?
   end
 end

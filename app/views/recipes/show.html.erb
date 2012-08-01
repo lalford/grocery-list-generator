@@ -10,7 +10,7 @@
 
     <% for ingredient in @recipe.ingredients.sort! { |i1,i2| i1.food.name <=> i2.food.name } %>
       <tr>        
-        <td><%= ingredient.quantity %></td>
+        <td><%= number_with_precision(ingredient.quantity, :precision => 2) %></td>
         <td><%= ingredient.unit_name %></td>
         <td><%= ingredient.food.name %></td>
       </tr>
