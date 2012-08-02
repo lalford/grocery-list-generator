@@ -10,5 +10,14 @@
 
 <%= yield %>
 
+<br/>
+<p class="legend">
+  <%= link_to 'Start New List', '/' %> <br>
+  <%= link_to "View Saved Lists", grocery_lists_path %><br/>
+  <%= link_to "View", recipes_path %>/<%= link_to "Enter", new_recipe_path %> Recipes<br/>
+  <%= link_to "View", foods_path %>/<%= link_to "Enter", new_food_path %> Foods<br/>
+  <%= link_to "View", store_sections_path %>/<%= link_to "Enter", new_store_section_path %> Store Sections<br/>
+</p>
+
 </body>
 </html>

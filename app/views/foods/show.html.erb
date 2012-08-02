@@ -15,10 +15,4 @@
   <%= @food.store_section.name if @food.store_section %>
 </p>
 
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %> |
-<%= link_to 'Main Page', '/' %><br />
-<% unless notice.nil? or notice.blank? %>
-  <br/><%= link_to 'Enter Another Food', new_food_path %>
-<% end %>
-<br/>
+<%= link_to 'Edit', edit_food_path(@food) %>
