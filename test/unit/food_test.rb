@@ -18,14 +18,9 @@ class FoodTest < ActiveSupport::TestCase
     assert !food.save, "saved food without a name"
   end
 
-  test "should find salmon to be a meat and a protein as well as part of the stuffed salmon recipe" do
+  test "should find salmon as an ingredient in the stuffed salmon recipe" do
     salmon = foods(:salmon)
     assert salmon.valid?
-    labels = salmon.labels
-    assert_equal labels.size, 2, "expected 2 labels for meat and protein"
-    labels.each { |label|
-      assert (label.name.casecmp("meat") or label.name.casecmp("protein")), "expected labels of meat and protein"
-    }
     recipes = salmon.recipes
     assert_equal recipes.size, 1, "expected 1 recipe for stuffed salmon"
     assert recipes[0].name.casecmp("stuffed salmon"), "expected stuffed salmon recipe"
