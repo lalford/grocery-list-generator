@@ -57,6 +57,6 @@ module GroceryListGenerator
     config.assets.version = '1.0'
 
     # pagination constants
-    config.per_page = 25
+    config.per_page = 20
   end
 end
