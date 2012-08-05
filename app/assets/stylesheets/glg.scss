@@ -3,14 +3,30 @@ body {
   margin-top: 25px;
   padding: 10px;
   background-color: #a0a0a0; 
-  background-image: url(/images/recipe-bg.jpg);
+  
   background-repeat: no-repeat;
   background-attachment:fixed;
   background-position: left top;
   background-size: 300px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: courier, bookman;
   font-size: 14px;
   color: #000066;
+    &.grocery-lists {
+    background-image: url(/images/grocery-lists-bg.jpg);
+  }
+  &.recipes {
+    background-image: url(/images/recipes-bg.jpg);
+  }
+  &.groceries {
+    background-image: url(/images/grocery-bg.jpg);
+  }
+  &.departments {
+    background-image: url(/images/departments-bg.jpg);
+  }
+
+  &.foods {
+    background-image: url(/images/ingredients-bg.jpg);
+  }
   }
 
 p, ol, ul, td {
