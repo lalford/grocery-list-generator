@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   #   ?substring=<substring of recipe name>
   def index
-    @recipes = Recipe.search(params[:substring])
+    @recipes = Recipe.order("name").page(params[:page]).per(GroceryListGenerator::Application.config.per_page)
 
     respond_to do |format|
       format.html # index.html.erb

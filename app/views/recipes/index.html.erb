@@ -13,6 +13,7 @@
     <th></th>
   </tr>
 
+<%= paginate @recipes %>
 <% @recipes.each do |recipe| %>
   <tr>
     <td><%= recipe.name %></td>

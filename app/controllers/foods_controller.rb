@@ -3,9 +3,8 @@ class FoodsController < ApplicationController
 
   # GET /foods
   # GET /foods.json
-  #   ?substring=<substring of food name>
   def index
-    @foods = Food.search(params[:substring])
+    @foods = Food.order("name").page(params[:page]).per(GroceryListGenerator::Application.config.per_page)
 
     respond_to do |format|
       format.html # index.html.erb

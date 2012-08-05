@@ -4,6 +4,7 @@
 <legend><b>STORE SECTION</b></legend>
 <table>
 
+<%= paginate @store_sections %>
 <% @store_sections.each do |store_section| %>
   <tr>
     <td style="padding-right: 15px"><%= store_section.name %></td>

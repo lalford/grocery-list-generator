@@ -16,7 +16,7 @@ class Food < ActiveRecord::Base
 
   def self.search(query)
     if query
-      find(:all, :conditions => ['name LIKE ?', "#{query}%"], :order => 'name')
+      find(:all, :conditions => ['name LIKE ?', "#{query}%"], :order => "LOWER(name)")
     else
       find(:all, :order => 'name')
     end

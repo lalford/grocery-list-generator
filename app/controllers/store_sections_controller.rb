@@ -2,7 +2,7 @@ class StoreSectionsController < ApplicationController
   # GET /store_sections
   # GET /store_sections.json
   def index
-    @store_sections = StoreSection.all
+    @store_sections = StoreSection.order("name").page(params[:page]).per(GroceryListGenerator::Application.config.per_page)
 
     respond_to do |format|
       format.html # index.html.erb
