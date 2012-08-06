@@ -8,39 +8,43 @@
   <%= @grocery_list.name %>
 </p>
 
-<p>
-  <b>RECIPES</b>
-  <table border="1">
-    <tr>
+<fieldset style="width: 400px;">
+	<legend>
+  <b>RECIPES</b></legend>
+  <table border="0">
+    <tr align="left">
       <th>Name</th>
       <th>Servings</th>
     </tr>
     <% for glr in @grocery_list.grocery_list_recipes.sort! { |glr1,glr2| glr1.recipe.name <=> glr2.recipe.name } %>
       <tr>
-        <td><%= glr.recipe.name %></td>
+        <td width="275px"><%= glr.recipe.name %></td>
         <td><%= glr.quantity %></td>
       </tr>
     <% end %>
   </table>
-</p>
+</fieldset>
+<br>
 
-<p>
-  <b>A LA CARTE</b>
-  <table border="1">
-    <tr>
+<fieldset style="width: 400px">
+	<legend>
+  <b>A LA CARTE</b></legend>
+  <table border="0">
+    <tr align="left">
       <th>Name</th>
       <th>Quantity</th>
       <th>Unit</th>
     </tr>
     <% for glf in @grocery_list.grocery_list_foods.sort! { |glf1,glf2| glf1.food.name <=> glf2.food.name } %>
       <tr>
-        <td><%= glf.food.name %></td>
+        <td width="275px"><%= glf.food.name %></td>
         <td><%= number_with_precision(glf.quantity, :precision => 2) %></td>
         <td><%= glf.unit_name %></td>
       </tr>
     <% end %>
   </table>
-</p>
+</fieldset>
+<br>
 
 <%= link_to 'Edit', edit_grocery_list_path(@grocery_list) %> |
 <%= link_to 'Generate', generate_grocery_list_path(@grocery_list) %>
