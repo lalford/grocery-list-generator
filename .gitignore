@@ -22,6 +22,8 @@ README.rdoc
 *.iml
 *.ipr
 *.iws
+.idea/
 
 # Ignore the directory bundler seems to insist on
 journey-1.0.3
+
